@@ -23,6 +23,7 @@
 * [Build settings](how-it-works/build-settings.md)
 * [Environment variables](how-it-works/environment-variables.md)
 * [Persistent files and the ephemeral container](how-it-works/ephemeral-container.md)
+* [Progress and errors](how-it-works/progress-and-errors.md)
 * [Server size and scaling](how-it-works/size-and-scaling.md)
 * [Billing and your account](how-it-works/billing.md)
 * [Deleting a deployment and disconnecting AWS](how-it-works/deleting-and-disconnecting.md)

@@ -17,6 +17,10 @@ By default your app is started with gunicorn using the `wsgi_module` and `worker
 * Python 3.10 to 3.13 are supported, with pip or uv.
 * Only a folder with `manage.py` is deployed. If your project lives in a subfolder, set `root` in the build settings.
 
+## The first build in a brand-new AWS account can take hours
+
+A new AWS account starts with no build capacity. DjangoCloud asks AWS to enable it automatically, and the deployment page says so while it waits. This happens once per account.
+
 ## Rollbacks restore code, not data
 
 A rollback does not reverse database migrations. DjangoCloud blocks a rollback that would run old code against a newer schema unless you confirm it. See [Releases and rollbacks](../how-it-works/releases-and-rollbacks.md).

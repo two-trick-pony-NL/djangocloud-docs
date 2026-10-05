@@ -9,7 +9,7 @@ Create a dedicated IAM user for this. Never use your root account keys.
 ## Steps
 
 1. In the AWS console open **IAM → Users → Create user**, for example `djangocloud`.
-2. Attach this policy to the user:
+2. Attach this policy to the user. It lets DjangoCloud run your app on Lightsail and set up a small build environment in your account (a build project, a private bucket for build inputs, a role and logs). It has no access to any other service:
 
    ```json
    {
@@ -17,8 +17,84 @@ Create a dedicated IAM user for this. Never use your root account keys.
      "Statement": [
        {
          "Effect": "Allow",
-         "Action": ["lightsail:*", "ecr:*", "sts:GetCallerIdentity"],
+         "Action": [
+           "lightsail:*",
+           "sts:GetCallerIdentity"
+         ],
          "Resource": "*"
+       },
+       {
+         "Effect": "Allow",
+         "Action": [
+           "servicequotas:GetServiceQuota",
+           "servicequotas:GetAWSDefaultServiceQuota",
+           "servicequotas:ListServiceQuotas",
+           "servicequotas:RequestServiceQuotaIncrease",
+           "servicequotas:GetRequestedServiceQuotaChange",
+           "servicequotas:ListRequestedServiceQuotaChangeHistory",
+           "servicequotas:ListRequestedServiceQuotaChangeHistoryByQuota"
+         ],
+         "Resource": "*"
+       },
+       {
+         "Effect": "Allow",
+         "Action": [
+           "kms:CreateGrant",
+           "kms:DescribeKey",
+           "kms:ListAliases",
+           "kms:ListGrants",
+           "kms:Decrypt",
+           "kms:GenerateDataKey",
+           "kms:GenerateDataKeyWithoutPlaintext",
+           "kms:ReEncrypt*"
+         ],
+         "Resource": "*"
+       },
+       {
+         "Effect": "Allow",
+         "Action": "codebuild:*",
+         "Resource": "arn:aws:codebuild:*:*:project/djangocloud-build*"
+       },
+       {
+         "Effect": "Allow",
+         "Action": [
+           "logs:CreateLogGroup",
+           "logs:PutRetentionPolicy",
+           "logs:GetLogEvents",
+           "logs:DescribeLogStreams"
+         ],
+         "Resource": [
+           "arn:aws:logs:*:*:log-group:/aws/codebuild/djangocloud-build",
+           "arn:aws:logs:*:*:log-group:/aws/codebuild/djangocloud-build:*"
+         ]
+       },
+       {
+         "Effect": "Allow",
+         "Action": "s3:*",
+         "Resource": [
+           "arn:aws:s3:::djangocloud-build-*-*",
+           "arn:aws:s3:::djangocloud-build-*-*/*"
+         ]
+       },
+       {
+         "Effect": "Allow",
+         "Action": [
+           "iam:CreateRole",
+           "iam:GetRole",
+           "iam:PutRolePolicy",
+           "iam:TagRole"
+         ],
+         "Resource": "arn:aws:iam::*:role/djangocloud-build-*"
+       },
+       {
+         "Effect": "Allow",
+         "Action": "iam:PassRole",
+         "Resource": "arn:aws:iam::*:role/djangocloud-build-*",
+         "Condition": {
+           "StringEquals": {
+             "iam:PassedToService": "codebuild.amazonaws.com"
+           }
+         }
        }
      ]
    }
@@ -28,6 +104,14 @@ Create a dedicated IAM user for this. Never use your root account keys.
 4. In the DjangoCloud dashboard open **AWS**, choose a [region](../reference/regions.md), and paste the access key ID and secret access key.
 
 DjangoCloud checks the keys with AWS before saving them.
+
+## What this costs you
+
+Your app's servers are billed by AWS at Lightsail list prices. Builds run in AWS CodeBuild in your account and cost a few cents each.
+
+{% hint style="info" %}
+If your AWS account is brand new, AWS may need some hours to enable builds for it the first time. DjangoCloud asks for it automatically and shows "Waiting for AWS to enable builds" on your deployment page, then continues on its own.
+{% endhint %}
 
 ## How the keys are handled
 

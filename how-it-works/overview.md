@@ -4,8 +4,8 @@ Every deploy, whether it starts from `djangocloud deploy` or a push to GitHub, g
 
 1. **Source.** Your code arrives as an upload from the CLI, or is fetched from GitHub with a short-lived read-only token.
 2. **Release.** DjangoCloud creates a numbered release (v1, v2, ...) and snapshots your [build settings](build-settings.md) and [environment variables](environment-variables.md) into it.
-3. **Build.** A container image is built from your settings. Builds are queued, and a build that runs too long is stopped (see [Known limitations](../reference/limitations.md)).
-4. **Deploy.** The image is deployed to a Lightsail container service in your AWS account. Your release command, by default `python manage.py migrate --noinput`, runs before the app starts.
+3. **Build.** A container image is built from your settings in a throwaway AWS CodeBuild container in your account. The build gets your source and a temporary push-only login to your Lightsail image registry, and nothing else. A build that runs too long is stopped (see [Known limitations](../reference/limitations.md)).
+4. **Deploy.** The image is registered with your Lightsail container service and deployed to it. Your release command, by default `python manage.py migrate --noinput`, runs before the app starts.
 5. **Health check.** DjangoCloud waits until your app answers on its health check path, then marks the release **active** and the previous one **superseded**.
 6. **Live.** Your app is served over HTTPS on its public URL.
 
