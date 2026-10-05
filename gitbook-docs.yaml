@@ -6,6 +6,7 @@ site:
       key: djangocloud-docs
       title: Documentation
       path: docs
+      default: true
       content:
         directory: ./
         language: en
