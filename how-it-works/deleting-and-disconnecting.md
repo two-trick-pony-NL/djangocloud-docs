@@ -2,11 +2,17 @@
 
 ## Delete a deployment
 
-You can delete a deployment from the dashboard. This removes it from DjangoCloud, together with its release history and settings.
+You can delete a deployment from the dashboard. This removes it from DjangoCloud, together with its release history and settings, and then deletes what it left in AWS:
+
+* its **container service** and **images**, so nothing keeps running or billing,
+* its **database**, if it has one, after we save a **final snapshot** of it in your AWS account (named `final-<database name>-<date>`),
+* the **source uploads** we stored for it.
 
 {% hint style="warning" %}
-At the time of writing, deleting a deployment does not remove the resources in your AWS account. After deleting, open the **Lightsail** console in the same region and delete the container service named `dc-<your-slug>`. Until you do, AWS keeps billing you for it.
+Deleting is final. The database snapshot is the only thing kept, and it stays in your AWS account until you delete it there. Snapshots are billed by AWS at storage prices.
 {% endhint %}
+
+Removal runs in the background. If your AWS account is disconnected or its environment was already removed, we delete only what we hold ourselves.
 
 ## Disconnect your AWS account
 

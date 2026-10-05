@@ -25,9 +25,16 @@ A new AWS account starts with no build capacity. DjangoCloud asks AWS to enable 
 
 A rollback does not reverse database migrations. DjangoCloud blocks a rollback that would run old code against a newer schema unless you confirm it. See [Releases and rollbacks](../how-it-works/releases-and-rollbacks.md).
 
-## Releases kept
+## What we keep, and for how long
 
-Images for the 10 most recent releases are kept. Older releases can't be rolled back to.
+| | Your own AWS account | Company | Enterprise |
+| --- | --- | --- | --- |
+| Releases you can roll back to (their images and uploaded source) | 3 | 3 | 10 |
+| Logs | 3 days | 7 days | 30 days |
+
+CPU and memory graphs keep 30 days. Older images and uploads are deleted automatically after a new release goes live, and a release whose image was deleted can't be rolled back to. The live release is never deleted.
+
+When you **delete a deployment**, its server and images are deleted from AWS too. A database is deleted after we save a final snapshot of it in your AWS account, so you can still restore it.
 
 ## Environment variables
 
@@ -40,7 +47,7 @@ You can deploy to the [regions listed here](regions.md), where Lightsail contain
 
 ## Metrics and logs
 
-Metrics are kept for 30 days. Log and metric collection is still being finished in early access, so some views may be empty.
+Logs and metrics are collected every few minutes, so the newest lines can be a little behind.
 
 ## Starter plan: you run your own cloud
 
