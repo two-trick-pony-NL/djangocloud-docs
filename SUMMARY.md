@@ -10,6 +10,12 @@
 * [Deploy by pushing to GitHub](getting-started/github.md)
 * [Deploy from CI](getting-started/ci.md)
 
+## Guides
+
+* [Django production checklist](guides/django-checklist.md)
+* [Databases](guides/databases.md)
+* [Background tasks and scheduled jobs](guides/background-tasks.md)
+
 ## How it works
 
 * [From code to a live URL](how-it-works/overview.md)
@@ -17,6 +23,13 @@
 * [Build settings](how-it-works/build-settings.md)
 * [Environment variables](how-it-works/environment-variables.md)
 * [Persistent files and the ephemeral container](how-it-works/ephemeral-container.md)
+* [Server size and scaling](how-it-works/size-and-scaling.md)
+* [Billing and your account](how-it-works/billing.md)
+* [Deleting a deployment and disconnecting AWS](how-it-works/deleting-and-disconnecting.md)
+
+## Troubleshooting
+
+* [Failed deploys](troubleshooting/failed-deploys.md)
 
 ## Reference
 
@@ -24,6 +37,9 @@
 * [CLI commands](reference/cli.md)
 * [Regions](reference/regions.md)
 * [Pricing](reference/pricing.md)
+* [API](reference/api.md)
+* [Security](reference/security.md)
+* [FAQ](reference/faq.md)
 
 ## Community and support
 
