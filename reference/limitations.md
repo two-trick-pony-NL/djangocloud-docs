@@ -6,9 +6,9 @@ What to know before you build on DjangoCloud. We list these plainly so you aren'
 
 Files written to disk are lost on every restart and deploy. Use a managed database and object storage. See [Persistent files and the ephemeral container](../how-it-works/ephemeral-container.md).
 
-## Apps are served by gunicorn (WSGI)
+## How your app is served
 
-By default your app is started with gunicorn using the `wsgi_module` and `workers` from your [build settings](../how-it-works/build-settings.md). ASGI, websockets and long-lived connections aren't set up for you. You can replace the command with `start_command`, but that is your own responsibility to test.
+Your app is started with **uvicorn** when it has an ASGI app (`asgi_module`), and with gunicorn when it only has a WSGI app. Both use the `workers` from your [build settings](../how-it-works/build-settings.md). Websockets work with uvicorn. Each deployment is a single small container, so the number of concurrent connections is limited by its size, and a restart or deploy closes open connections. You can replace the command with `start_command`, but that is your own responsibility to test.
 
 ## Build and source limits
 

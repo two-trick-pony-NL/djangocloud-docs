@@ -10,7 +10,7 @@ Your subscription is unpaid or canceled. Update your card under **Billing** and 
 
 The server checks every [build setting](../how-it-works/build-settings.md) and lists all problems at once. Fix them in `.djangocloud/config.json` and deploy again. The most common are:
 
-* `wsgi_module` is missing or wrong. It must point at your WSGI application, for example `config.wsgi:application`.
+* `asgi_module` and `wsgi_module` are both missing or wrong. One of them must point at your application, for example `config.asgi:application`. `asgi_module` wins when both are set; pin `server` to `gunicorn` to use the WSGI app instead.
 * `python_version` is not one of 3.10, 3.11, 3.12 or 3.13.
 * Your project lives in a subfolder. Set `root` to the folder that contains `manage.py`.
 

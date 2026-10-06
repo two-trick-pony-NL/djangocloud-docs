@@ -28,6 +28,7 @@ Run it with no arguments, or `help`, to list the commands. A standalone `djangoc
 | `--no-input` | Never prompt and never open a browser. Fails with a clear message if something is missing. |
 | `--project <slug>` | Choose the project without asking. |
 | `--name`, `--size` | Create a project with these values (for CI). |
+| `--asgi-module <module>` | Set the ASGI app when it can't be detected. It is started with uvicorn. |
 | `--wsgi-module <module>` | Set the WSGI app when it can't be detected. |
 
 ## Environment variables

@@ -29,7 +29,7 @@ When the release is live the CLI prints its URL. Every later `deploy` skips the 
 ## What you need
 
 * Python 3.10 or newer and Django 4.2 or newer.
-* A WSGI application, for example `config.wsgi:application`. The CLI detects it, and you can [change it in the build settings](../how-it-works/build-settings.md).
+* An ASGI or WSGI application, for example `config.asgi:application` or `config.wsgi:application`. The CLI detects it, and you can [change it in the build settings](../how-it-works/build-settings.md).
 * Your dependencies in `requirements.txt`, or in `pyproject.toml` and `uv.lock` if you use uv.
 
 ## Next

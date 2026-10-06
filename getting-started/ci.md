@@ -21,12 +21,12 @@ Give it everything up front:
 python manage.py djangocloud deploy --no-input --name "My Shop" --size nano
 ```
 
-## If the WSGI module can't be detected
+## If the app module can't be detected
 
 Pass it explicitly:
 
 ```bash
-python manage.py djangocloud deploy --no-input --wsgi-module config.wsgi:application
+python manage.py djangocloud deploy --no-input --asgi-module config.asgi:application
 ```
 
 ## Settings

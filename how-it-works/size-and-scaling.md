@@ -24,7 +24,7 @@ On Starter, AWS bills you for the servers directly in your own AWS account. Djan
 ## Choosing a size
 
 * Start with **Nano** for a small app or a test.
-* Gunicorn runs a fixed number of workers (default 2, set with `workers` in the [build settings](build-settings.md)). Each worker uses memory, so a memory-hungry app needs a bigger size or fewer workers.
+* uvicorn (or gunicorn, for a WSGI-only app) runs a fixed number of workers (default 2, set with `workers` in the [build settings](build-settings.md)). Each worker uses memory, so a memory-hungry app needs a bigger size or fewer workers.
 * If a release keeps restarting or being killed, it may be running out of memory. Try the next size up.
 
 ## More than one instance

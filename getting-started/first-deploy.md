@@ -20,6 +20,7 @@ $ python manage.py djangocloud deploy
 ✓ Linked to my-shop (.djangocloud/config.json)
 ✓ Wrote build settings to .djangocloud/config.json
   found wsgi_module = config.wsgi:application
+  found asgi_module = config.asgi:application (started with uvicorn)
 ✓ Packed 148 files (212 KB). .env and .git are never uploaded.
 ✓ Uploaded. Release v1 started.
   Building v1

@@ -26,7 +26,7 @@ Roll back to an earlier release. Code rolls back, but database migrations don't.
 
 ## Does it support websockets or ASGI?
 
-Not out of the box. The default is gunicorn with WSGI. See [Known limitations](limitations.md).
+Yes. If your project has an ASGI app (every `startproject` does), it is started with uvicorn, and websockets work with Channels or your own consumers. Open connections are closed on every deploy and restart. See [Build settings](../how-it-works/build-settings.md).
 
 ## Which Python and Django versions?
 
