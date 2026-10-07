@@ -2,7 +2,7 @@
 
 From an existing Django project to a live URL in five steps.
 
-1. **Get an account** at [djangocloud.dev](https://djangocloud.dev). DjangoCloud is in early access, so join the beta on the site and we'll let you in. Then add a card: the Starter plan covers the tooling, and AWS bills you separately for the servers you run.
+1. **Create your account** at [djangocloud.dev](https://djangocloud.dev) and add a card. The Starter plan is $0.99 a month and covers the tooling; AWS bills you separately for the servers you run. Company and Enterprise, where we host the app for you, are coming soon: join the waitlist on the site to hear first.
 2. **[Connect your AWS account](connect-aws.md).** Create a limited IAM user and paste its access key into the dashboard.
 3. **Install the CLI** in your project's environment:
 
