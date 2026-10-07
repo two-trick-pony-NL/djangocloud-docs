@@ -17,6 +17,8 @@ A rollback redeploys an older release's image as a **new** release, so your hist
 
 You can roll back to any release that ran successfully (active or superseded) and still has its image.
 
+In the dashboard open **Releases** and press **Roll back** on the release you want. Nothing is rebuilt: the old image is deployed again as a new release, and it is live in a minute or two. A release whose image has been deleted shows no button. The API has a matching endpoint, listed under [API](../reference/api.md).
+
 ### Code rolls back, data does not
 
 A rollback never reverses database migrations. If the release you pick is older than migrations that are already applied, DjangoCloud refuses by default and lists the migrations that would be left behind, because the old code would run against a newer schema. You can override this once you have checked it is safe.

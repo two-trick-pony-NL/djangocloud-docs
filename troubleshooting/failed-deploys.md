@@ -4,7 +4,7 @@ Find your release in the dashboard under **Releases**, or watch the CLI output. 
 
 ## "Account suspended for non-payment"
 
-Your subscription is unpaid or canceled. Update your card under **Billing** and deploy again. See [Billing](../how-it-works/billing.md).
+Your subscription is unpaid or canceled. Update your card under **Settings → Billing** and deploy again. See [Billing](../how-it-works/billing.md).
 
 ## Build settings problems
 

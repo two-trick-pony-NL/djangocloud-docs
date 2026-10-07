@@ -14,16 +14,19 @@
 
 * [Django production checklist](guides/django-checklist.md)
 * [Databases](guides/databases.md)
+* [Custom domains](guides/custom-domains.md)
 * [Background tasks and scheduled jobs](guides/background-tasks.md)
 
 ## How it works
 
 * [From code to a live URL](how-it-works/overview.md)
+* [How your app is run](how-it-works/how-your-app-runs.md)
 * [Releases and rollbacks](how-it-works/releases-and-rollbacks.md)
 * [Build settings](how-it-works/build-settings.md)
 * [Environment variables](how-it-works/environment-variables.md)
 * [Persistent files and the ephemeral container](how-it-works/ephemeral-container.md)
 * [Progress and errors](how-it-works/progress-and-errors.md)
+* [Logs and metrics](how-it-works/logs-and-metrics.md)
 * [Server size and scaling](how-it-works/size-and-scaling.md)
 * [Billing and your account](how-it-works/billing.md)
 * [Deleting a deployment and disconnecting AWS](how-it-works/deleting-and-disconnecting.md)

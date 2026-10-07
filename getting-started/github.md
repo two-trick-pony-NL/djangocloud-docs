@@ -24,5 +24,5 @@ From then on, a push to that branch queues a release, builds it and deploys it. 
 * Build settings are read from `.djangocloud/config.json` in the repository, so commit that file. See [Build settings](../how-it-works/build-settings.md).
 
 {% hint style="info" %}
-You can still deploy from your laptop at any time. `python manage.py djangocloud deploy --github` deploys the linked repository's latest commit instead of your local folder.
+You can still deploy from your laptop at any time. `djangocloud deploy --github` deploys the linked repository's latest commit instead of your local folder.
 {% endhint %}

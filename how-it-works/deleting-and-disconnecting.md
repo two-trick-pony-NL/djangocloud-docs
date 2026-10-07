@@ -16,14 +16,14 @@ Removal runs in the background. If your AWS account is disconnected or its envir
 
 ## Disconnect your AWS account
 
-Under **AWS** in the dashboard you can disconnect your account. DjangoCloud forgets your access key. **Existing deployments keep running on AWS**, but you can no longer deploy new releases until you connect again.
+Under **Settings → AWS account** in the dashboard you can disconnect your account. DjangoCloud forgets your access key. **Existing deployments keep running on AWS**, but you can no longer deploy new releases until you connect again.
 
 To fully revoke access, also delete or deactivate the access key for the IAM user in the AWS console.
 
 ## Revoke CLI tokens
 
-Tokens for the CLI and CI are listed under **Command line**. Revoke any you no longer use.
+Tokens for the CLI and CI are listed under **Settings → Developer**. Revoke any you no longer use.
 
 ## Delete your DjangoCloud account
 
-To close your account and have your data removed, ask in the [Slack community](../community/support.md).
+Open **Settings → Account** and use **Close account**. It cancels your subscription and deletes everything: your deployments, their servers, images and databases (a final database snapshot is taken first), your AWS environment if we host it, and your account. It cannot be undone, and you confirm by typing your email address.

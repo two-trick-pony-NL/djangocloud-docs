@@ -1,12 +1,31 @@
 # CLI commands
 
-Install with `pip install djangocloud-cli`. Everything runs through `manage.py`:
+Install with `pip install djangocloud-cli`.
+
+## Two ways to run it
+
+```bash
+djangocloud <command>
+```
+
+Works as soon as the package is installed. There is nothing to add to your project, and it still works when your settings won't load. This is the form these docs use.
 
 ```bash
 python manage.py djangocloud <command>
 ```
 
-Run it with no arguments, or `help`, to list the commands. A standalone `djangocloud` command is installed too, with the same commands and no `manage.py`.
+Does the same thing from inside your project, but Django only finds a management command in an installed app. Add the app first, or you will see `Unknown command: 'djangocloud'`:
+
+```python
+INSTALLED_APPS = [
+    ...,
+    "djangocloud_cli",
+]
+```
+
+Run either form with no arguments, or `help`, to list the commands.
+
+## Commands
 
 | Command | What it does |
 | --- | --- |
@@ -16,20 +35,50 @@ Run it with no arguments, or `help`, to list the commands. A standalone `djangoc
 | `link` | Pick or create the project this folder deploys to. |
 | `unlink` | Detach this folder from its project. |
 | `deploy` | Link the folder if needed, pack and upload it, and stream the release until it is live. |
-| `logs` | Show a project's logs. *Coming.* |
-| `status` | Show the current release and its state. *Coming.* |
+| `status` | Is it live and answering? Shows the URL, size and latest releases. |
+| `logs` | Show a project's logs. See [Logs and metrics](../how-it-works/logs-and-metrics.md). |
 | `help [command]` | Help for everything, or for one command. |
 
-## Useful flags for `deploy`
+## Flags for `deploy` and `link`
 
 | Flag | Purpose |
 | --- | --- |
-| `--github` | Deploy the linked repository's latest commit instead of your local folder. |
-| `--no-input` | Never prompt and never open a browser. Fails with a clear message if something is missing. |
-| `--project <slug>` | Choose the project without asking. |
-| `--name`, `--size` | Create a project with these values (for CI). |
-| `--asgi-module <module>` | Set the ASGI app when it can't be detected. It is started with uvicorn. |
-| `--wsgi-module <module>` | Set the WSGI app when it can't be detected. |
+| `--project <slug>` | Use an existing project without asking. |
+| `--name <name>` | Create a project with this name without asking. |
+| `--size <size>` | Server size for a new project, for example `nano`. |
+| `--hosted` | New project: we run it for you (Company and Enterprise plans). |
+| `--own-cloud` | New project: it runs in your own AWS account. |
+| `-y`, `--yes` | Don't ask for confirmation. |
+
+`deploy` also takes:
+
+| Flag | Purpose |
+| --- | --- |
+| `--github` | Deploy the latest commit of the project's linked GitHub repository instead of uploading this folder. |
+| `--asgi-module <module>` | Your ASGI app, for example `config.asgi:application`, when it can't be detected. It is started with uvicorn. |
+| `--wsgi-module <module>` | Your WSGI app, for example `config.wsgi:application`, when it can't be detected. |
+
+## Flags for `status` and `logs`
+
+| Command | Flag | Purpose |
+| --- | --- | --- |
+| both | `--project <slug>` | A project other than the one this folder is linked to. |
+| `status` | `--json` | Print the raw details as JSON, for scripts. |
+| `logs` | `-f`, `--follow` | Keep streaming new lines. Ctrl-C to stop. |
+| `logs` | `-n`, `--lines <n>` | How many of the latest lines to show (default 100). |
+| `logs` | `--source` | Only `app`, `build` or `release` lines. |
+| `logs` | `--since <duration>` | Only lines newer than this: `90s`, `30m`, `2h` or `7d`. |
+
+## `--no-input` goes before the command
+
+`--no-input` is a flag of `djangocloud` itself, not of one command, so it comes **first**:
+
+```bash
+djangocloud --no-input deploy --project my-shop      # works
+djangocloud deploy --no-input --project my-shop      # error: unrecognized arguments
+```
+
+It makes the CLI never prompt and never open a browser, and fail with a clear message if something is missing. Setting `DJANGOCLOUD_NO_INPUT=1` does the same and works anywhere in the command, which is often easier in CI. See [Deploy from CI](../getting-started/ci.md).
 
 ## Environment variables
 
@@ -37,7 +86,7 @@ Run it with no arguments, or `help`, to list the commands. A standalone `djangoc
 | --- | --- |
 | `DJANGOCLOUD_TOKEN` | API token for CI. Takes precedence over a stored login. |
 | `DJANGOCLOUD_NO_INPUT` | Same as `--no-input` (set to `1`). |
-| `DJANGOCLOUD_API` | API base URL. |
+| `DJANGOCLOUD_API` | API base URL. The default is `https://djangocloud.dev/api/v1`. |
 
 ## Requirements
 

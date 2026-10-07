@@ -2,23 +2,27 @@
 
 For GitHub Actions or any place without a browser, use an API token.
 
-1. In the dashboard open **Command line → Token for CI** and create a token. Copy it right away, it is shown once.
+1. In the dashboard open **Settings → Developer**, find **Token for CI** and create a token. Copy it right away, it is shown once.
 2. Save it as a repository secret named `DJANGOCLOUD_TOKEN`.
-3. Deploy with `--no-input` so the CLI never prompts and never opens a browser:
+3. Deploy with `--no-input` so the CLI never prompts and never opens a browser.
 
 ```yaml
 - run: pip install djangocloud-cli
-- run: python manage.py djangocloud deploy --no-input --project my-shop
+- run: djangocloud --no-input deploy --project my-shop
   env:
     DJANGOCLOUD_TOKEN: ${{ secrets.DJANGOCLOUD_TOKEN }}
 ```
+
+{% hint style="warning" %}
+`--no-input` goes **before** the command: `djangocloud --no-input deploy`. After it (`djangocloud deploy --no-input`) the CLI answers `unrecognized arguments`. To avoid the question of order, set `DJANGOCLOUD_NO_INPUT=1` in the job's environment instead, which works with the flag anywhere.
+{% endhint %}
 
 ## Creating a project from CI
 
 Give it everything up front:
 
 ```bash
-python manage.py djangocloud deploy --no-input --name "My Shop" --size nano
+djangocloud --no-input deploy --name "My Shop" --size nano --own-cloud
 ```
 
 ## If the app module can't be detected
@@ -26,7 +30,7 @@ python manage.py djangocloud deploy --no-input --name "My Shop" --size nano
 Pass it explicitly:
 
 ```bash
-python manage.py djangocloud deploy --no-input --asgi-module config.asgi:application
+djangocloud --no-input deploy --project my-shop --asgi-module config.asgi:application
 ```
 
 ## Settings
@@ -37,4 +41,4 @@ python manage.py djangocloud deploy --no-input --asgi-module config.asgi:applica
 | `DJANGOCLOUD_NO_INPUT` | Same as `--no-input` (set it to `1`). |
 | `DJANGOCLOUD_API` | API base URL. The default is `https://djangocloud.dev/api/v1`. |
 
-Revoke a token any time under **Command line** in the dashboard.
+Revoke a token any time under **Settings → Developer** in the dashboard.

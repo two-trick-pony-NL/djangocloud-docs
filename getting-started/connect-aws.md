@@ -101,7 +101,7 @@ Create a dedicated IAM user for this. Never use your root account keys.
    ```
 
 3. Under **Security credentials**, create an access key.
-4. In the DjangoCloud dashboard open **AWS**, choose a [region](../reference/regions.md), and paste the access key ID and secret access key.
+4. In the DjangoCloud dashboard open **Settings → AWS account**, choose a [region](../reference/regions.md), and paste the access key ID and secret access key.
 
 DjangoCloud checks the keys with AWS before saving them.
 

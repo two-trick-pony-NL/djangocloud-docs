@@ -55,4 +55,4 @@ On Starter, your app runs in your AWS account. You pay AWS directly, you set up 
 
 ## Early access
 
-DjangoCloud is early. Some CLI commands, such as `logs` and `status`, are still on the way. The [Slack community](../community/support.md) is the best place to ask what's ready.
+DjangoCloud is early. Some things, such as custom domains, are new and may need a retry or a word in Slack. The [Slack community](../community/support.md) is the best place to ask what's ready.
