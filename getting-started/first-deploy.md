@@ -49,7 +49,7 @@ The upload is limited to 100 MB. Set secrets as [environment variables](../how-i
 
 ## The `.djangocloud` folder
 
-`.djangocloud/config.json` records which project the folder deploys to and holds your [build settings](../how-it-works/build-settings.md). It contains no secrets, and a `.gitignore` inside the folder keeps the link out of your repository. If you [deploy from GitHub](github.md), commit your build settings so the build can read them.
+`.djangocloud/config.json` records which project the folder deploys to and holds your [build settings](../how-it-works/build-settings.md). It contains no secrets, so commit it: a CI checkout then knows its project (`djangocloud --no-input deploy` needs no flags), and if you [deploy from GitHub](github.md) the build can read your build settings. Versions up to 0.1.12 hid the folder with a `.gitignore` inside it; newer ones remove that file if the CLI wrote it.
 
 ## Signing in safely
 
