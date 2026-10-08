@@ -17,7 +17,16 @@ Prices are on the [Pricing](../reference/pricing.md) page.
 
 ## Changing size or instance count
 
-Open your deployment, go to **Settings**, and choose a size and a number of instances between **1 and 20**. The change is recorded straight away and **applies on your next deploy**. It does not restart the running release.
+Open your deployment, go to **Settings**, and choose a size and a number of instances between **1 and 20**. The change is recorded straight away and then applied to the running service in the background, so you don't need to deploy again. On a hosted plan the new size is billed first. If applying it fails, the deployment keeps its current size and the reason is shown.
+
+### From the command line
+
+```bash
+djangocloud scale                          # pick a size from a list, then the number of instances
+djangocloud scale --size small --instances 3
+```
+
+The CLI shows the old and the new size with the monthly price, asks to confirm (`-y` skips that), and then waits until the change is applied. `--no-wait` returns as soon as it is queued, and `djangocloud status` shows the size at any time. Leave out `--size` or `--instances` to keep the current value of that one. Both are limited to the sizes above and 1 to 20 instances, and only one change can run at a time. In [CI](../getting-started/ci.md) give both flags, with `--no-input` in front: `djangocloud --no-input scale --size small --instances 3 -y`. See the [CLI reference](../reference/cli.md) for the flags.
 
 On Starter, AWS bills you for the servers directly in your own AWS account. DjangoCloud does not charge for them.
 
