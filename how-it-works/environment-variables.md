@@ -9,6 +9,26 @@ Paste a block of `KEY=value` lines. DjangoCloud checks the whole block first, an
 * You can store up to 200 variables per deployment.
 * Values are encrypted at rest and can't be read back from the dashboard once saved.
 
+## From the command line
+
+```bash
+djangocloud env push production.env
+djangocloud env list
+```
+
+`env push` reads a `.env` file and saves the variables on the project, encrypted. It prints names only, never values.
+
+* **It adds and overwrites; it does not remove.** Variables you don't send are left alone. Add `--prune` to remove everything you didn't send. It asks first, and it never removes the variables DjangoCloud sets itself, such as `DJANGOCLOUD_HOSTED_DB_*` for a database it created.
+* **All or nothing.** If a line is invalid, nothing is sent and the error names the line.
+* **Preview it** with `--dry-run`: it lists which names are new and which would be overwritten, and changes nothing.
+* **Read from standard input** with `-` instead of a file name.
+
+The file is read like a `.env` file: comments, `export KEY=value`, single and double quotes and quoted values that span several lines (a PEM key) all work. `$VAR` is not expanded.
+
+`env list` shows the names that are set. Values are never shown, by the CLI or by the API.
+
+Both commands act on the linked project, or on `--project <slug>`. See [Deploy from CI](../getting-started/ci.md) for keeping the values in your CI secrets instead of a file.
+
 ## When changes take effect
 
 Environment variables are part of a release. A change applies to the **next** release you deploy, not to the one that's running. After editing variables, deploy again.

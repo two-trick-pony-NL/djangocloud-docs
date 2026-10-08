@@ -17,7 +17,16 @@ A rollback redeploys an older release's image as a **new** release, so your hist
 
 You can roll back to any release that ran successfully (active or superseded) and still has its image.
 
-In the dashboard open **Releases** and press **Roll back** on the release you want. Nothing is rebuilt: the old image is deployed again as a new release, and it is live in a minute or two. A release whose image has been deleted shows no button. The API has a matching endpoint, listed under [API](../reference/api.md).
+In the dashboard open **Releases** and press **Roll back** on the release you want. Nothing is rebuilt: the old image is deployed again as a new release, and it is live in a minute or two. A release whose image has been deleted shows no button.
+
+### From the command line
+
+```bash
+djangocloud rollback          # pick a release from a list
+djangocloud rollback 3        # go back to release 3
+```
+
+The CLI shows what it is about to do, asks to confirm (`-y` skips that), and then streams the new release until it is live, exactly like a deploy. `--no-wait` returns as soon as it is queued. In [CI](../getting-started/ci.md) give the number, with `--no-input` in front: `djangocloud --no-input rollback 3`. If the release can't be rolled back to, for example because it is already live or its image is gone, the message says why. The API has a matching endpoint, listed under [API](../reference/api.md).
 
 ### Code rolls back, data does not
 

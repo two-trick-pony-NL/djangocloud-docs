@@ -17,6 +17,8 @@ The CLI talks to a small HTTP API. Most people only use the CLI, but the endpoin
 | `GET /projects/<id>/logs` | Log lines, oldest first. Filter with `source` (`app`, `build` or `release`) and `since` (for example `2h`). Pass `after=<cursor>` to get only newer lines, which is how `logs -f` follows. |
 | `POST /projects/<id>/releases` | Upload source (a `.tar.gz` in the multipart field `source`) and start a release. Answers 202 with the release. |
 | `POST /projects/<id>/rollback` | Redeploy an older release's image as a new release. JSON body `{"version": N}`. Answers 202 with the new release. |
+| `GET /projects/<id>/env` | The names of the project's [environment variables](../how-it-works/environment-variables.md), never their values. |
+| `PUT /projects/<id>/env` | Set variables. JSON body `{"variables": {"KEY": "value"}, "replace": false}`. Encrypted, all or nothing, and applied from the next deploy. With `replace` the other variables are removed, except the ones DjangoCloud manages. Answers `{"created": [], "updated": [], "removed": []}` (names only). |
 | `GET /releases/<id>` | The state of a release and the log lines since `?after=<cursor>`. The CLI polls it until the release is done. |
 
 {% hint style="info" %}
