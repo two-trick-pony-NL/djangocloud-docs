@@ -41,7 +41,8 @@ Run either form with no arguments to see the menu of commands. `help` prints eve
 | `setup` | Guided first run: create your account, add a card, choose hosted or your own AWS, connect your AWS keys. |
 | `rollback [version]` | Go back to an earlier release. See [Releases and rollbacks](../how-it-works/releases-and-rollbacks.md). |
 | `scale` | Change the server size and the number of instances. See [Size and scaling](../how-it-works/size-and-scaling.md). |
-| `env push`, `env list` | Set a project's environment variables from a file or from CI, or list their names. See [Environment variables](../how-it-works/environment-variables.md). |
+| `env push`, `env list`, `env remove` | Set a project's environment variables from a file or from CI, list their names, or remove some. See [Environment variables](../how-it-works/environment-variables.md). |
+| `superuser` | Set the admin user to create on the next deploy. See [Create an admin user](../guides/admin-user.md). |
 | `autoscale` | Show autoscaling, or turn it on with a minimum and maximum, or off. See [Size and scaling](../how-it-works/size-and-scaling.md). |
 | `alerts` | Show the usage alerts, or change the CPU and memory limits and the downtime email. See [Size and scaling](../how-it-works/size-and-scaling.md). |
 | `metrics` | The server's CPU and memory load as a small chart. See [Logs and metrics](../how-it-works/logs-and-metrics.md). |
@@ -180,7 +181,14 @@ uv tool upgrade djangocloud-cli
 
 In CI, pin the version you test with and raise it deliberately.
 
-## Flags for `env push` and `env list`
+## Flags for `superuser`
+
+| Flag | Purpose |
+| --- | --- |
+| `--project <slug>` | A project other than the one this folder is linked to. |
+| `--no-deploy` | Don't offer to deploy right away. |
+
+## Flags for `env push`, `env list` and `env remove`
 
 | Command | Flag | Purpose |
 | --- | --- | --- |
@@ -189,7 +197,8 @@ In CI, pin the version you test with and raise it deliberately.
 | `env push` | `--prune` | Also remove the project's variables you did not send. Asks first. |
 | `env push` | `--dry-run` | Show which names are new and which are overwritten, and change nothing. |
 | `env push` | `-y`, `--yes` | Don't ask when removing. |
-| both | `--project <slug>` | A project other than the one this folder is linked to. |
+| `env remove` | `<NAME> ...` | The variables to remove, by name. Unknown names are ignored, and the ones DjangoCloud manages are never removed. |
+| all | `--project <slug>` | A project other than the one this folder is linked to. |
 
 ## `--no-input` goes before the command
 

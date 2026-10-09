@@ -42,6 +42,7 @@ DjangoCloud builds your app into a container image from a short list of settings
 | `start_command` | `(none)` | Override the start command. Empty starts uvicorn or gunicorn for you. |
 | `run_tests` | `false` | Run your tests with the CLI before every deploy. A failing test stops the deploy. See [Tests before deploys](tests-before-deploys.md). |
 | `test_command` | `python -m pytest -q` | The command that runs your tests. It must exit non-zero when they fail. Detected for you when you switch tests on. |
+| `create_superuser` | `false` | Create an admin user when the app starts, after the release command, from the `DJANGO_SUPERUSER_*` variables that `djangocloud superuser` sets for your user model. An existing user is left alone, and a failure never stops the app from starting. See [Create an admin user](../guides/admin-user.md). |
 | `workers` | `2` | Server worker processes (1-16). |
 | `port` | `8000` | Port your app listens on (1-65535). |
 | `healthcheck_path` | `/` | Path the platform requests to decide your app is healthy. |

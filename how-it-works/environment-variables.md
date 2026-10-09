@@ -25,6 +25,8 @@ djangocloud env list
 
 The file is read like a `.env` file: comments, `export KEY=value`, single and double quotes and quoted values that span several lines (a PEM key) all work. `$VAR` is not expanded.
 
+`env remove NAME [NAME ...]` removes variables by name. Names that aren't set are ignored, and the variables DjangoCloud manages itself (`DJANGOCLOUD_HOSTED_DB_*`) are never removed. Like every change, it applies from the next deploy.
+
 `env list` shows the names that are set. Values are never shown, by the CLI or by the API.
 
 Both commands act on the linked project, or on `--project <slug>`. See [Deploy from CI](../getting-started/ci.md) for keeping the values in your CI secrets instead of a file.

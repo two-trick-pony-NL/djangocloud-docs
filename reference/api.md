@@ -26,6 +26,7 @@ The CLI talks to a small HTTP API. Most people only use the CLI, but the endpoin
 | `POST /projects/<id>/database/network` | `{"public": true}` opens the database for one hour, `{"public": false}` locks it now. Answers 202. |
 | `POST /projects/<id>/database/snapshot` | Take a manual snapshot. Answers 202; `snapshot_pending` stays true until it is done. One at a time. |
 | `GET` / `PUT /projects/<id>/tests` | Read or set whether the project refuses deploys unless their [tests passed](../how-it-works/tests-before-deploys.md). `{"require": true}`. |
+| `DELETE /projects/<id>/env` | Remove variables by name. JSON body `{"names": ["KEY"]}`. Unknown names are ignored and the ones DjangoCloud manages are never removed. Answers `{"created": [], "updated": [], "removed": [...]}`. |
 | `GET /releases/<id>` | The state of a release and the log lines since `?after=<cursor>`. The CLI polls it until the release is done. |
 
 ## Report your tests with a release

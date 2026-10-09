@@ -16,6 +16,7 @@
 * [Databases](guides/databases.md)
 * [Backups and restoring your database](guides/backups-and-restore.md)
 * [Custom domains](guides/custom-domains.md)
+* [Create an admin user](guides/admin-user.md)
 * [Background tasks and scheduled jobs](guides/background-tasks.md)
 
 ## How it works
