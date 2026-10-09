@@ -67,6 +67,8 @@ Three things differ from a plain `startproject`:
 
 * **An empty `.env`.** It is kept out of git and never uploaded with your code. Add `KEY=value` lines and send them with `djangocloud env push .env`; see [Environment variables](../how-it-works/environment-variables.md).
 
+The project also gets a short `README.md`: how to run it locally, deploy it, send environment variables and connect a database.
+
 Everything else a deployed app needs, such as static files and allowed hosts, DjangoCloud adds when it builds the image.
 
 The name can use letters, digits, `-` and `_`, and it must not clash with a Python or Django module (`test`, `django`, ...). An existing folder with files in it is never touched. Inside an existing project (a folder with `manage.py` or a linked `.djangocloud` folder, or any folder below one), `new` is not listed in the help and refuses to run.
