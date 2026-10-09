@@ -24,6 +24,7 @@
 * [How your app is run](how-it-works/how-your-app-runs.md)
 * [Releases and rollbacks](how-it-works/releases-and-rollbacks.md)
 * [Build settings](how-it-works/build-settings.md)
+* [Tests before deploys](how-it-works/tests-before-deploys.md)
 * [Environment variables](how-it-works/environment-variables.md)
 * [Persistent files and the ephemeral container](how-it-works/ephemeral-container.md)
 * [Progress and errors](how-it-works/progress-and-errors.md)

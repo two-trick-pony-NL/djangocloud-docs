@@ -28,6 +28,39 @@ djangocloud scale --size small --instances 3
 
 The CLI shows the old and the new size with the monthly price, asks to confirm (`-y` skips that), and then waits until the change is applied. `--no-wait` returns as soon as it is queued, and `djangocloud status` shows the size at any time. Leave out `--size` or `--instances` to keep the current value of that one. Both are limited to the sizes above and 1 to 20 instances, and only one change can run at a time. In [CI](../getting-started/ci.md) give both flags, with `--no-input` in front: `djangocloud --no-input scale --size small --instances 3 -y`. See the [CLI reference](../reference/cli.md) for the flags.
 
+### Autoscaling
+
+Autoscaling adds and removes instances for you, between a minimum and a maximum you choose.
+
+```bash
+djangocloud autoscale on --min 2 --max 6
+djangocloud autoscale off          # keeps the range for next time
+djangocloud autoscale              # show it
+```
+
+You can also set it under **Settings** in the dashboard. It is deliberately slow and careful:
+
+* **Out:** one more instance when the CPU averaged over 5 minutes is above 70% (or memory above 85%), at most every 5 minutes.
+* **In:** one fewer instance when the CPU stayed below 30% for the whole last 30 minutes, and the remaining instances would still sit under 60% carrying the same load, at most every 15 minutes.
+* It never goes outside your minimum and maximum, and never while a size change is already running.
+* It reads the same samples as the [Metrics](logs-and-metrics.md) tab, which arrive every few minutes, so it reacts in minutes, not seconds.
+
+If a scaling change fails, for example because a card is declined, autoscaling switches itself **off** and says why, instead of retrying and billing in a loop.
+
+## Usage alerts
+
+We email you when your app's CPU or memory stays high, and optionally when the server stops answering.
+
+```bash
+djangocloud alerts on --cpu 80 --memory 85 --downtime
+djangocloud alerts off
+djangocloud alerts                 # show the settings
+```
+
+* The **average over the last 10 minutes** has to be over your limit, so one busy minute is not an alert.
+* You get one email when it starts, a reminder at most every 6 hours while it lasts, and the alert resets once usage is back under the limits.
+* With `--downtime` you are also emailed when the server stops answering.
+
 On Starter, AWS bills you for the servers directly in your own AWS account. DjangoCloud does not charge for them.
 
 ## Choosing a size

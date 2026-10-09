@@ -11,6 +11,10 @@ Every deploy creates a **release**: a numbered, immutable record of the image th
 | Superseded | A newer release replaced it. It can still be rolled back to. |
 | Failed | The build or deploy failed. It never served traffic. |
 
+## Tests on a release
+
+If your deploy ran your tests first, the release records it: **passed** (with the command and how long it took) or **skipped**. The **Releases** tab has a Tests column, and the deployment's log shows an event such as "Tests passed before the deploy". Releases made without tests show a dash. See [Tests before deploys](tests-before-deploys.md).
+
 ## Rolling back
 
 A rollback redeploys an older release's image as a **new** release, so your history stays a straight line. The rollback also restores the environment variables that release had, exactly as they were.

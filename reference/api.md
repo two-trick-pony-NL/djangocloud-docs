@@ -19,7 +19,22 @@ The CLI talks to a small HTTP API. Most people only use the CLI, but the endpoin
 | `POST /projects/<id>/rollback` | Redeploy an older release's image as a new release. JSON body `{"version": N}`. Answers 202 with the new release. |
 | `GET /projects/<id>/env` | The names of the project's [environment variables](../how-it-works/environment-variables.md), never their values. |
 | `PUT /projects/<id>/env` | Set variables. JSON body `{"variables": {"KEY": "value"}, "replace": false}`. Encrypted, all or nothing, and applied from the next deploy. With `replace` the other variables are removed, except the ones DjangoCloud manages. Answers `{"created": [], "updated": [], "removed": []}` (names only). |
+| `GET` / `PUT /projects/<id>/autoscale` | Read or set [autoscaling](../how-it-works/size-and-scaling.md). `{"enabled": true, "min": 2, "max": 6}`. Turning it off keeps the range. |
+| `GET` / `PUT /projects/<id>/alerts` | Read or set the usage alerts. `{"enabled": true, "cpu": 80, "memory": 85, "downtime": true}`; leave a field out to keep it. |
+| `GET /projects/<id>/metrics` | CPU and memory in percent of the server size, oldest first. `?since=6h` (at most 30 days), thinned to at most 500 points. |
+| `GET /projects/<id>/database` | The managed database: state, size, public access, endpoint, last snapshot. Never includes credentials. |
+| `POST /projects/<id>/database/network` | `{"public": true}` opens the database for one hour, `{"public": false}` locks it now. Answers 202. |
+| `POST /projects/<id>/database/snapshot` | Take a manual snapshot. Answers 202; `snapshot_pending` stays true until it is done. One at a time. |
+| `GET` / `PUT /projects/<id>/tests` | Read or set whether the project refuses deploys unless their [tests passed](../how-it-works/tests-before-deploys.md). `{"require": true}`. |
 | `GET /releases/<id>` | The state of a release and the log lines since `?after=<cursor>`. The CLI polls it until the release is done. |
+
+## Report your tests with a release
+
+`POST /projects/<id>/releases` also accepts the form fields `tests` (`passed`, `skipped` or `none`), `tests_command` and `tests_seconds`. The release stores them and shows them in the dashboard. A project that requires passing tests answers **422** `tests_required` for anything but `passed`. The report is made by the caller, so it guards against mistakes, not against someone who sends `passed` without running anything.
+
+## Old CLI versions
+
+When the service has a minimum CLI version, a CLI below it gets **426** `upgrade_required` with the version and the upgrade command. Answers to the CLI can also carry the headers `X-DjangoCloud-Notice`, `X-DjangoCloud-Latest-Version` and `X-DjangoCloud-Upgrade-Command`. Other clients are never affected.
 
 {% hint style="info" %}
 The API is early and may change. Pin your CLI version in CI if you depend on its behaviour.

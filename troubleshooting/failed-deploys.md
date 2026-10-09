@@ -45,6 +45,14 @@ Only relevant to hosted plans. Complete the payment for the new size, then deplo
 
 A rollback is refused if the release is older than migrations that are already applied, or if it never ran successfully or its image was pruned. See [Releases and rollbacks](../how-it-works/releases-and-rollbacks.md).
 
+## "Upgrade needed"
+
+Your CLI is older than the minimum version the service supports, and the command stopped before changing anything. Upgrade it with `pip install -U djangocloud-cli`, or `uv tool upgrade djangocloud-cli` if you installed it with uv, and run the command again.
+
+## "This project only accepts deploys whose tests passed"
+
+The project requires passing tests (`djangocloud tests --require on`) and this deploy didn't report a passing run. Run the deploy from the CLI with tests switched on (`djangocloud tests on`) and without `--skip-tests`. A deploy of a GitHub commit has no test run, so it is refused too. Turn the requirement off with `djangocloud tests --require off`. See [Tests before deploys](../how-it-works/tests-before-deploys.md).
+
 ## Still stuck?
 
 Ask in [Slack](../community-and-support/support.md) and include your project name, release number and the last lines of the log.

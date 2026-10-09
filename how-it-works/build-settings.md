@@ -40,6 +40,8 @@ DjangoCloud builds your app into a container image from a short list of settings
 | `static_files` | `auto` | `auto`: serve static files with WhiteNoise unless your settings already handle them (WhiteNoise, a CDN, S3). `off`: leave your settings alone. One of: auto, off. |
 | `release_command` | `python manage.py migrate --noinput` | Runs before the app starts, **every time a container starts** (each deploy, restart and instance). Keep it safe to repeat. Empty to skip. |
 | `start_command` | `(none)` | Override the start command. Empty starts uvicorn or gunicorn for you. |
+| `run_tests` | `false` | Run your tests with the CLI before every deploy. A failing test stops the deploy. See [Tests before deploys](tests-before-deploys.md). |
+| `test_command` | `python -m pytest -q` | The command that runs your tests. It must exit non-zero when they fail. Detected for you when you switch tests on. |
 | `workers` | `2` | Server worker processes (1-16). |
 | `port` | `8000` | Port your app listens on (1-65535). |
 | `healthcheck_path` | `/` | Path the platform requests to decide your app is healthy. |

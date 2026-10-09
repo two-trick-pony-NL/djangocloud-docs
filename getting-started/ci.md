@@ -17,6 +17,12 @@ For GitHub Actions or any place without a browser, use an API token.
 `--no-input` goes **before** the command: `djangocloud --no-input deploy`. After it (`djangocloud deploy --no-input`) the CLI answers `unrecognized arguments`. To avoid the question of order, set `DJANGOCLOUD_NO_INPUT=1` in the job's environment instead, which works with the flag anywhere.
 {% endhint %}
 
+## Tests in CI
+
+If the project has `run_tests` switched on (see [Tests before deploys](../how-it-works/tests-before-deploys.md)), `djangocloud deploy` runs the tests first, on the CI machine, and stops if one fails. Install your test dependencies in the job before you deploy. A script or CI job is never asked whether to switch tests on: `--no-input` leaves the setting exactly as it is in `.djangocloud/config.json`.
+
+If you already run the tests in an earlier step, pass `--skip-tests` to the deploy to avoid running them twice. The release is then recorded as "tests skipped", so a project that requires passing tests would refuse it.
+
 ## Keeping your secrets in your CI
 
 If your secrets live in GitHub, push them to the project before each deploy. Name the variables to send with `--from-env`, and map each one from a secret. Empty ones are skipped and reported by name, so optional secrets can stay unset:

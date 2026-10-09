@@ -93,6 +93,23 @@ import dj_database_url
 DATABASES = {"default": dj_database_url.config(conn_max_age=60)}
 ```
 
+## Your managed database from the CLI
+
+If DjangoCloud runs a managed Postgres database for your deployment, you can look after it from the terminal:
+
+```bash
+djangocloud db status           # state, size, public access, endpoint, last snapshot
+djangocloud db public           # is it open to the internet right now?
+djangocloud db public on        # open it for one hour
+djangocloud db public off       # lock it now
+djangocloud db snapshot         # take a snapshot and wait until it is ready
+```
+
+* **Public access is temporary.** `db public on` opens the database's public endpoint for **one hour**, for example so you can connect from your laptop, and it locks again by itself. Nothing stays open.
+* **Locking cuts off your app too.** `db public off` closes every public connection until you open it again, and the CLI asks you to confirm first (`-y` skips that).
+* **Snapshots are kept** until you delete them, unlike the automatic backups, which reach back a week. Take one before a risky migration. Only one snapshot runs at a time.
+* **Credentials are not shown** by the CLI. Find the connection details in the dashboard.
+
 ## Tips
 
 * **Same region.** Keep the database in the region your app runs in. Cross-region latency is felt on every query.

@@ -51,6 +51,16 @@ Samples are taken **every 5 minutes** while your app is running and kept for **3
 
 Each row of the **Deployments** list has two small graphs, CPU and Memory, for the last 24 hours. They have the same hover callout. The list refreshes every 10 seconds, and pauses while your pointer is on a graph so the callout doesn't disappear while you read it.
 
+### Metrics from the terminal
+
+```bash
+djangocloud metrics              # the last hour
+djangocloud metrics --since 6h
+djangocloud metrics --json       # the samples, for scripts
+```
+
+It draws CPU and memory as small charts with the latest value, the peak and the average for the range. The samples are the same ones the Metrics tab uses: every 5 minutes, kept for 30 days, so `--since` can reach back at most 30 days.
+
 ### Status from the terminal
 
 ```bash

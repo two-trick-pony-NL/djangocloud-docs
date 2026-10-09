@@ -41,6 +41,11 @@ Run either form with no arguments, or `help`, to list the commands.
 | `rollback [version]` | Go back to an earlier release. See [Releases and rollbacks](../how-it-works/releases-and-rollbacks.md). |
 | `scale` | Change the server size and the number of instances. See [Size and scaling](../how-it-works/size-and-scaling.md). |
 | `env push`, `env list` | Set a project's environment variables from a file or from CI, or list their names. See [Environment variables](../how-it-works/environment-variables.md). |
+| `autoscale` | Show autoscaling, or turn it on with a minimum and maximum, or off. See [Size and scaling](../how-it-works/size-and-scaling.md). |
+| `alerts` | Show the usage alerts, or change the CPU and memory limits and the downtime email. See [Size and scaling](../how-it-works/size-and-scaling.md). |
+| `metrics` | The server's CPU and memory load as a small chart. See [Logs and metrics](../how-it-works/logs-and-metrics.md). |
+| `db status`, `db public`, `db snapshot` | Your managed database: its state, who can reach it, and a snapshot on demand. See [Databases](../guides/databases.md). |
+| `tests`, `test` | Run your tests before every deploy, and see or change that setting. See [Tests before deploys](../how-it-works/tests-before-deploys.md). |
 | `teardown` | Delete a project and what it created in AWS. You type its name to confirm. |
 | `help [command]` | Every command with all of its options, or the help for one command. |
 
@@ -62,6 +67,7 @@ Run either form with no arguments, or `help`, to list the commands.
 | `--github` | Deploy the latest commit of the project's linked GitHub repository instead of uploading this folder. |
 | `--asgi-module <module>` | Your ASGI app, for example `config.asgi:application`, when it can't be detected. It is started with uvicorn. |
 | `--wsgi-module <module>` | Your WSGI app, for example `config.wsgi:application`, when it can't be detected. |
+| `--skip-tests` | Deploy without running the tests this project normally runs first. The release is recorded as "tests skipped". See [Tests before deploys](../how-it-works/tests-before-deploys.md). |
 
 ## Flags for `status` and `logs`
 
@@ -92,6 +98,61 @@ Run either form with no arguments, or `help`, to list the commands.
 | `--project <slug>` | A project other than the one this folder is linked to. |
 | `-y`, `--yes` | Don't ask for confirmation. |
 | `--no-wait` | Return as soon as the change is queued. |
+
+## Flags for `autoscale` and `alerts`
+
+| Command | Flag | Purpose |
+| --- | --- | --- |
+| both | `on` or `off` | Turn it on or off. Leave it out to show the current settings. |
+| `autoscale` | `--min <n>`, `--max <n>` | The fewest and most instances (1 to 20). Turning autoscaling on needs both. |
+| `alerts` | `--cpu <percent>`, `--memory <percent>` | Email when the average stays above this (1 to 100). |
+| `alerts` | `--downtime` / `--no-downtime` | Also email when the server stops answering. |
+| both | `--project <slug>` | A project other than the one this folder is linked to. |
+
+## Flags for `metrics`
+
+| Flag | Purpose |
+| --- | --- |
+| `--since <duration>` | How far back: `30m`, `6h` or `7d` (default `1h`, at most 30 days). |
+| `--json` | Print the raw samples as JSON, for scripts. |
+| `--project <slug>` | A project other than the one this folder is linked to. |
+
+## `db` commands
+
+| Command | What it does |
+| --- | --- |
+| `db status` | The database's state, size, public access, endpoint, last snapshot and how far back it can be restored. `--json` for scripts. |
+| `db public [on\|off]` | Open the database to the internet for one hour, or lock it now. Without `on` or `off` it shows the current state. `-y` skips the confirmation. |
+| `db snapshot` | Take a snapshot now and wait until it is ready. `--no-wait` returns as soon as it is queued. |
+
+All three take `--project <slug>` for a project other than the one this folder is linked to.
+
+## Flags for `tests` and `test`
+
+| Command | Flag | Purpose |
+| --- | --- | --- |
+| `tests` | `on` or `off` | Run the tests before every deploy, or stop. Leave it out to show the settings. |
+| `tests` | `--detect` | Work out the test command from your project again. |
+| `tests` | `--command <cmd>` | Set the test command yourself. |
+| `tests` | `--require on\|off` | Make the project refuse deploys unless their tests passed. |
+| `test` | `-- <args>` | Extra arguments for the test command, for example `djangocloud test -- -k login`. |
+
+## Keeping the CLI up to date
+
+Every answer from DjangoCloud tells the CLI whether it is current. After a command you may see:
+
+* **A notice** from us, for example about a change that is coming and how to prepare for it.
+* **A newer version** is available, with the command to upgrade.
+* **Upgrade needed**, when your version is older than the minimum the service supports. The command stops and says how to upgrade. Nothing is deployed or changed.
+
+Upgrade with either of these, depending on how you installed it:
+
+```bash
+pip install -U djangocloud-cli
+uv tool upgrade djangocloud-cli
+```
+
+In CI, pin the version you test with and raise it deliberately.
 
 ## Flags for `env push` and `env list`
 
