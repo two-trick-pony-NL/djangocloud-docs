@@ -29,6 +29,7 @@ Run either form with no arguments to see the menu of commands. `help` prints eve
 
 | Command | What it does |
 | --- | --- |
+| `new <name>` | Create a new Django project that is ready to deploy. See [Start a new project](#start-a-new-project). |
 | `login` | Sign in by approving a code in your browser. |
 | `logout` | Forget the stored token. |
 | `whoami` | Show who you're signed in as, and which project this folder deploys to. |
@@ -48,6 +49,20 @@ Run either form with no arguments to see the menu of commands. `help` prints eve
 | `tests`, `test` | Run your tests before every deploy, and see or change that setting. See [Tests before deploys](../how-it-works/tests-before-deploys.md). |
 | `teardown` | Delete a project and what it created in AWS. You type its name to confirm. |
 | `help [command]` | Every command with all of its options, or the help for one command. |
+
+## Start a new project
+
+```bash
+djangocloud new my-shop
+cd my-shop
+djangocloud deploy
+```
+
+`new` takes one argument, the project's name, and creates a folder of that name with a stock Django project for the latest LTS release (currently 5.2): the same files `django-admin startproject` writes, plus a `requirements.txt` and a `.gitignore`. You do not need Django installed to run it.
+
+The only change to the settings is `DATABASES`. On your computer it is a local SQLite file, so `manage.py runserver` works straight away. On DjangoCloud, once you select and connect a database, the `DJANGOCLOUD_HOSTED_DB_*` variables exist and the settings switch to that Postgres database. See [Databases](../guides/databases.md). Everything else a deployed app needs, such as static files and allowed hosts, DjangoCloud adds when it builds the image.
+
+The name can use letters, digits, `-` and `_`, and it must not clash with a Python or Django module (`test`, `django`, ...). An existing folder is never overwritten.
 
 ## Flags for `deploy` and `link`
 
