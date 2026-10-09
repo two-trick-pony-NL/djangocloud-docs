@@ -92,6 +92,8 @@ djangocloud tests --require on
 djangocloud tests --require off
 ```
 
+You can also switch it in the dashboard: open the deployment, go to **Settings**, and use **Tests before deploys** under *Optional extras*. It shows whether tests are required and the last result a deploy reported. Whether the CLI runs tests for a given folder is the `run_tests` setting in that folder's `.djangocloud/config.json`, so that part is changed with `djangocloud tests on|off`, not in the dashboard.
+
 With this on, a deploy with `--skip-tests`, without tests switched on, or from GitHub is refused with "This project only accepts deploys whose tests passed". If this folder doesn't run tests, the CLI warns you when you turn the requirement on, so you don't lock yourself out.
 
 {% hint style="warning" %}

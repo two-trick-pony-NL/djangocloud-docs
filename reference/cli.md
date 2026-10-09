@@ -23,7 +23,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Run either form with no arguments, or `help`, to list the commands.
+Run either form with no arguments to see the menu of commands. `help` prints every command with all of its options, and `help <command>` the options of one. A command that has subcommands, such as `db` or `env`, prints its own menu when you give it none.
 
 ## Commands
 
