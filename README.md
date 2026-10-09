@@ -8,7 +8,7 @@ djangocloud login
 djangocloud deploy
 ```
 
-Nothing to change in your project. Your static files, HTTPS and database migrations are taken care of.
+The CLI is [`djangocloud-cli` on PyPI](https://pypi.org/project/djangocloud-cli/). Nothing to change in your project. Your static files, HTTPS and database migrations are taken care of.
 
 ## Where to start
 

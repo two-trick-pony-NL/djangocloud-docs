@@ -1,6 +1,6 @@
 # Install the CLI and deploy
 
-The CLI is a normal Python package:
+The CLI is a normal Python package, [`djangocloud-cli` on PyPI](https://pypi.org/project/djangocloud-cli/):
 
 ```bash
 pip install djangocloud-cli

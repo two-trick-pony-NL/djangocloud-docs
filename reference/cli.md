@@ -1,6 +1,6 @@
 # CLI commands
 
-Install with `pip install djangocloud-cli`.
+Install with `pip install djangocloud-cli`. The package, its release history and its README are on [PyPI](https://pypi.org/project/djangocloud-cli/).
 
 ## Two ways to run it
 
