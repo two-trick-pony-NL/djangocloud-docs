@@ -1,18 +1,76 @@
-/* DjangoCloud blue. Starlight derives the rest of the palette from these three. */
-:root {
-	--sl-color-accent-low: #172554;
-	--sl-color-accent: #2563eb;
-	--sl-color-accent-high: #93c5fd;
+/* DjangoCloud theme: the same colours as the website (website/templates/website/theme.html) and the dashboard.
+   Near-black neutrals with a hint of green, white text, and one green accent. Dark is the default, like the site. */
+
+:root,
+:root[data-theme='dark'] {
+	/* neutrals: white text on green-black (the site's gray-50 ... gray-950) */
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e6ece8;
+	--sl-color-gray-2: #cfd9d3;
+	--sl-color-gray-3: #8c9c93;
+	--sl-color-gray-4: #4d5c54;
+	--sl-color-gray-5: #333f39;
+	--sl-color-gray-6: #171d1a;
+	--sl-color-gray-7: #121714;
+	--sl-color-black: #0e1210;
+
+	/* brand green (the site's blue-950 / blue-500 / blue-400, which are green there) */
+	--sl-color-accent-low: #082a1e;
+	--sl-color-accent: #2fb87b;
+	--sl-color-accent-high: #5fd39b;
+
+	--sl-color-bg: #0e1210;
+	--sl-color-bg-nav: #0e1210;
+	--sl-color-bg-sidebar: #0e1210;
+	--sl-color-hairline: #232c27;
+	--sl-color-hairline-light: #232c27;
+	--sl-color-hairline-shade: #171d1a;
 }
 
 :root[data-theme='light'] {
-	--sl-color-accent-low: #dbeafe;
-	--sl-color-accent: #2563eb;
-	--sl-color-accent-high: #1e3a8a;
+	/* black and white: neutral greys, black text, the same green */
+	--sl-color-white: #000000;
+	--sl-color-gray-1: #171717;
+	--sl-color-gray-2: #333333;
+	--sl-color-gray-3: #5c5c5c;
+	--sl-color-gray-4: #8a8a8a;
+	--sl-color-gray-5: #d4d4d4;
+	--sl-color-gray-6: #f1f1f1;
+	--sl-color-gray-7: #f8f8f8;
+	--sl-color-black: #ffffff;
+
+	--sl-color-accent-low: #d3f5e3;
+	--sl-color-accent: #1f9a65;
+	--sl-color-accent-high: #145f42;
+
+	--sl-color-bg: #ffffff;
+	--sl-color-bg-nav: #ffffff;
+	--sl-color-bg-sidebar: #ffffff;
+	--sl-color-hairline: #e5e5e5;
+	--sl-color-hairline-light: #ececec;
+	--sl-color-hairline-shade: #f1f1f1;
 }
 
-/* A little more room for the long reference tables. */
+/* Calm, dense, like the dashboard: tighter radius, thin borders. */
+.sl-markdown-content :not(pre) > code {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 4px;
+}
+
 .sl-markdown-content table {
 	display: block;
 	overflow-x: auto;
 }
+
+/* The primary button reads black on green, like the site's buttons. */
+.sl-link-button.primary {
+	color: #03130c;
+	font-weight: 600;
+}
+
+.sl-link-button.primary:hover {
+	background-color: var(--sl-color-accent-high);
+	border-color: var(--sl-color-accent-high);
+}
+
+/* The first visit follows the site: dark. (The picker still lets people switch.) */

@@ -22,6 +22,13 @@ export default defineConfig({
 			logo: { src: './src/assets/logo.png', alt: 'DjangoCloud' },
 			favicon: '/favicon.svg',
 			customCss: ['./src/styles/custom.css'],
+			// Dark on a first visit, like the website; whoever picks light keeps it (Starlight remembers the choice).
+			head: [
+				{
+					tag: 'script',
+					content: "try{if(!localStorage.getItem('starlight-theme')){localStorage.setItem('starlight-theme','dark');document.documentElement.dataset.theme='dark'}}catch(e){}",
+				},
+			],
 			sidebar,
 		}),
 	],
