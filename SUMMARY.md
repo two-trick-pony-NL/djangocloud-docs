@@ -47,4 +47,4 @@
 
 ## Community and support
 
-* [Slack and getting help](community/support.md)
+* [Slack and getting help](community-and-support/support.md)

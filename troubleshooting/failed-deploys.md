@@ -1,4 +1,4 @@
-# Troubleshooting failed deploys
+# Failed deploys
 
 Find your release in the dashboard under **Releases**, or watch the CLI output. The log explains why a release failed. These are the common causes.
 
@@ -47,4 +47,4 @@ A rollback is refused if the release is older than migrations that are already a
 
 ## Still stuck?
 
-Ask in [Slack](../community/support.md) and include your project name, release number and the last lines of the log.
+Ask in [Slack](../community-and-support/support.md) and include your project name, release number and the last lines of the log.

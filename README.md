@@ -17,7 +17,7 @@ Nothing to change in your project. Your static files, HTTPS and database migrati
 * **Want deploys on every push?** [Connect GitHub](getting-started/github.md).
 * **Wondering what is and isn't supported?** Read the [known limitations](reference/limitations.md) before you build on it.
 * **What does it cost?** See [Pricing](reference/pricing.md).
-* **Stuck?** Come to [Slack](community/support.md).
+* **Stuck?** Come to [Slack](community-and-support/support.md).
 
 {% hint style="info" %}
 DjangoCloud is in early access. Some features are still being finished, and the pages say so where it matters.

@@ -27,10 +27,10 @@ A rollback does not reverse database migrations. DjangoCloud blocks a rollback t
 
 ## What we keep, and for how long
 
-| | Your own AWS account | Company | Enterprise |
-| --- | --- | --- | --- |
-| Releases you can roll back to (their images and uploaded source) | 3 | 3 | 10 |
-| Logs | 3 days | 7 days | 30 days |
+|                                                                  | Your own AWS account | Company | Enterprise |
+| ---------------------------------------------------------------- | -------------------- | ------- | ---------- |
+| Releases you can roll back to (their images and uploaded source) | 3                    | 3       | 10         |
+| Logs                                                             | 3 days               | 7 days  | 30 days    |
 
 CPU and memory graphs keep 30 days. Older images and uploads are deleted automatically after a new release goes live, and a release whose image was deleted can't be rolled back to. The live release is never deleted.
 
@@ -55,4 +55,4 @@ On Starter, your app runs in your AWS account. You pay AWS directly, you set up 
 
 ## Early access
 
-DjangoCloud is early. Some things, such as custom domains, are new and may need a retry or a word in Slack. The [Slack community](../community/support.md) is the best place to ask what's ready.
+DjangoCloud is early. Some things, such as custom domains, are new and may need a retry or a word in Slack. The [Slack community](../community-and-support/support.md) is the best place to ask what's ready.

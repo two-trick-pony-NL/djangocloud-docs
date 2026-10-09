@@ -38,4 +38,4 @@ Your app and its data live in the AWS region you choose, in your account. See [R
 
 ## Something isn't working
 
-See [Troubleshooting failed deploys](../troubleshooting/failed-deploys.md), or ask in [Slack](../community/support.md).
+See [Troubleshooting failed deploys](../troubleshooting/failed-deploys.md), or ask in [Slack](../community-and-support/support.md).

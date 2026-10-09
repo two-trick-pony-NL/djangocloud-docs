@@ -40,5 +40,5 @@ Use **Disconnect** on a domain that is set up. Your site stops answering on that
 Deleting the whole deployment deletes its domains' resources too. See [Deleting a deployment](../how-it-works/deleting-and-disconnecting.md).
 
 {% hint style="info" %}
-Custom domains are new. If a step stalls or fails in a way the message doesn't explain, tell us in [Slack](../community/support.md).
+Custom domains are new. If a step stalls or fails in a way the message doesn't explain, tell us in [Slack](../community-and-support/support.md).
 {% endhint %}

@@ -27,4 +27,4 @@ Values are encrypted at rest and can't be read back from the dashboard. They are
 
 ## Reporting a problem
 
-If you think you've found a security issue, tell us privately in the [Slack community](../community/support.md) by sending a direct message to the team, rather than posting it in a public channel.
+If you think you've found a security issue, tell us privately in the [Slack community](../community-and-support/support.md) by sending a direct message to the team, rather than posting it in a public channel.
