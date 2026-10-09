@@ -1,0 +1,164 @@
+[
+  {
+    "label": "Welcome",
+    "slug": "index"
+  },
+  {
+    "label": "Getting started",
+    "items": [
+      {
+        "label": "Quickstart",
+        "slug": "getting-started/quickstart"
+      },
+      {
+        "label": "Connect your AWS account",
+        "slug": "getting-started/connect-aws"
+      },
+      {
+        "label": "Install the CLI and deploy",
+        "slug": "getting-started/first-deploy"
+      },
+      {
+        "label": "Deploy by pushing to GitHub",
+        "slug": "getting-started/github"
+      },
+      {
+        "label": "Deploy from CI",
+        "slug": "getting-started/ci"
+      }
+    ]
+  },
+  {
+    "label": "Guides",
+    "items": [
+      {
+        "label": "Django production checklist",
+        "slug": "guides/django-checklist"
+      },
+      {
+        "label": "Databases",
+        "slug": "guides/databases"
+      },
+      {
+        "label": "Backups and restoring your database",
+        "slug": "guides/backups-and-restore"
+      },
+      {
+        "label": "Custom domains",
+        "slug": "guides/custom-domains"
+      },
+      {
+        "label": "Create an admin user",
+        "slug": "guides/admin-user"
+      },
+      {
+        "label": "Background tasks and scheduled jobs",
+        "slug": "guides/background-tasks"
+      }
+    ]
+  },
+  {
+    "label": "How it works",
+    "items": [
+      {
+        "label": "From code to a live URL",
+        "slug": "how-it-works/overview"
+      },
+      {
+        "label": "How your app is run",
+        "slug": "how-it-works/how-your-app-runs"
+      },
+      {
+        "label": "Releases and rollbacks",
+        "slug": "how-it-works/releases-and-rollbacks"
+      },
+      {
+        "label": "Build settings",
+        "slug": "how-it-works/build-settings"
+      },
+      {
+        "label": "Tests before deploys",
+        "slug": "how-it-works/tests-before-deploys"
+      },
+      {
+        "label": "Environment variables",
+        "slug": "how-it-works/environment-variables"
+      },
+      {
+        "label": "Persistent files and the ephemeral container",
+        "slug": "how-it-works/ephemeral-container"
+      },
+      {
+        "label": "Progress and errors",
+        "slug": "how-it-works/progress-and-errors"
+      },
+      {
+        "label": "Logs and metrics",
+        "slug": "how-it-works/logs-and-metrics"
+      },
+      {
+        "label": "Server size and scaling",
+        "slug": "how-it-works/size-and-scaling"
+      },
+      {
+        "label": "Billing and your account",
+        "slug": "how-it-works/billing"
+      },
+      {
+        "label": "Deleting a deployment and disconnecting AWS",
+        "slug": "how-it-works/deleting-and-disconnecting"
+      }
+    ]
+  },
+  {
+    "label": "Troubleshooting",
+    "items": [
+      {
+        "label": "Failed deploys",
+        "slug": "troubleshooting/failed-deploys"
+      }
+    ]
+  },
+  {
+    "label": "Reference",
+    "items": [
+      {
+        "label": "Known limitations",
+        "slug": "reference/limitations"
+      },
+      {
+        "label": "CLI commands",
+        "slug": "reference/cli"
+      },
+      {
+        "label": "Regions",
+        "slug": "reference/regions"
+      },
+      {
+        "label": "Pricing",
+        "slug": "reference/pricing"
+      },
+      {
+        "label": "API",
+        "slug": "reference/api"
+      },
+      {
+        "label": "Security",
+        "slug": "reference/security"
+      },
+      {
+        "label": "FAQ",
+        "slug": "reference/faq"
+      }
+    ]
+  },
+  {
+    "label": "Community and support",
+    "items": [
+      {
+        "label": "Slack and getting help",
+        "slug": "community-and-support/support"
+      }
+    ]
+  }
+]
