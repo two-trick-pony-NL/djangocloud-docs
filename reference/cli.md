@@ -58,7 +58,7 @@ cd my-shop
 djangocloud deploy
 ```
 
-`new` takes one argument, the project's name, and creates a folder of that name. It looks up the **latest Django LTS** release, then runs Django's own `django-admin startproject` for it. Django is installed just for that, away from your environment, so your own packages are never changed. This needs a network connection. When a new LTS comes out, `new` uses it without a CLI update.
+`new` takes one argument, the project's name, and creates a folder of that name. Leave the name out (`djangocloud new`) and it asks for one in the terminal, explaining and asking again if the name can't be used. It looks up the **latest Django LTS** release, then runs Django's own `django-admin startproject` for it. Django is installed just for that, away from your environment, so your own packages are never changed. This needs a network connection. When a new LTS comes out, `new` uses it without a CLI update.
 
 Three things differ from a plain `startproject`:
 
