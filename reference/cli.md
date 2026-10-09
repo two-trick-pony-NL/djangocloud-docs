@@ -58,11 +58,16 @@ cd my-shop
 djangocloud deploy
 ```
 
-`new` takes one argument, the project's name, and creates a folder of that name with a stock Django project for the latest LTS release (currently 5.2): the same files `django-admin startproject` writes, plus a `requirements.txt` and a `.gitignore`. You do not need Django installed to run it.
+`new` takes one argument, the project's name, and creates a folder of that name. It looks up the **latest Django LTS** release, then runs Django's own `django-admin startproject` for it. Django is installed just for that, away from your environment, so your own packages are never changed. This needs a network connection. When a new LTS comes out, `new` uses it without a CLI update.
 
-The only change to the settings is `DATABASES`. On your computer it is a local SQLite file, so `manage.py runserver` works straight away. On DjangoCloud, once you select and connect a database, the `DJANGOCLOUD_HOSTED_DB_*` variables exist and the settings switch to that Postgres database. See [Databases](../guides/databases.md). Everything else a deployed app needs, such as static files and allowed hosts, DjangoCloud adds when it builds the image.
+Two things differ from a plain `startproject`:
 
-The name can use letters, digits, `-` and `_`, and it must not clash with a Python or Django module (`test`, `django`, ...). An existing folder is never overwritten.
+* **`DATABASES`.** On your computer it is a local SQLite file, so `manage.py runserver` works straight away. On DjangoCloud, once you select and connect a database, the `DJANGOCLOUD_HOSTED_DB_*` variables exist and the settings switch to that Postgres database. See [Databases](../guides/databases.md).
+* **The CLI is installed in the project.** `djangocloud_cli` is added to `INSTALLED_APPS` and `djangocloud-cli` to `requirements.txt`, so `python manage.py djangocloud <command>` works as well as `djangocloud <command>`.
+
+Everything else a deployed app needs, such as static files and allowed hosts, DjangoCloud adds when it builds the image.
+
+The name can use letters, digits, `-` and `_`, and it must not clash with a Python or Django module (`test`, `django`, ...). An existing folder with files in it is never touched. Inside an existing project (a folder with `manage.py` or a linked `.djangocloud` folder, or any folder below one), `new` is not listed in the help and refuses to run.
 
 ## Flags for `deploy` and `link`
 
