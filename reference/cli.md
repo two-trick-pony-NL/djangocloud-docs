@@ -67,6 +67,8 @@ Three things differ from a plain `startproject`:
 
 * **An empty `.env`.** It is kept out of git and never uploaded with your code. Add `KEY=value` lines and send them with `djangocloud env push .env`; see [Environment variables](../how-it-works/environment-variables.md).
 
+Then `new` creates a `.venv` in the project and installs Django and the other requirements into it, with uv if you have it and pip otherwise, so `python manage.py runserver` works straight away. Add `--no-install` to skip that.
+
 The project also gets a short `README.md`: how to run it locally, deploy it, send environment variables and connect a database.
 
 Everything else a deployed app needs, such as static files and allowed hosts, DjangoCloud adds when it builds the image.
