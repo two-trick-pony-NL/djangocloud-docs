@@ -32,6 +32,14 @@ The CLI talks to a small HTTP API. Most people only use the CLI, but the endpoin
 | `DELETE /projects/<id>/env` | Remove variables by name. JSON body `{"names": ["KEY"]}`. Unknown names are ignored and the ones DjangoCloud manages are never removed. Answers `{"created": [], "updated": [], "removed": [...]}`. |
 | `GET /releases/<id>` | The state of a release and the log lines since `?after=<cursor>`. The CLI polls it until the release is done. |
 
+## Rate limits
+
+* **200 requests a minute per user.** The count is per account, whatever token or address you use, so several tokens or CI machines share one budget. A normal deploy polls about 30 times a minute.
+* **60 requests a minute per address** for callers without an account, such as the browser login endpoints.
+* **Stricter hourly limits** on a few endpoints that start work or change things (deploys, rollbacks, scale, environment changes, snapshots, tearing a project down).
+
+Over a limit the API answers **429** with `{"error": "rate_limited", "message": "...", "retry_after": 12}` and a `Retry-After` header with the same number of seconds. Reads are safe to repeat after that long; the CLI does it for you (up to two retries, when the wait is 30 seconds or less) and tells you how long to wait when it can't. A write is never repeated automatically.
+
 ## Report your tests with a release
 
 `POST /projects/<id>/releases` also accepts the form fields `tests` (`passed`, `skipped` or `none`), `tests_command` and `tests_seconds`. The release stores them and shows them in the dashboard. A project that requires passing tests answers **422** `tests_required` for anything but `passed`. The report is made by the caller, so it guards against mistakes, not against someone who sends `passed` without running anything.
