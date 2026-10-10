@@ -62,15 +62,39 @@
 	overflow-x: auto;
 }
 
-/* The primary button reads black on green, like the site's buttons. */
+/* Buttons match the website's: squared with an 8px radius (Starlight draws pills), the brand green with white text,
+   and a thin outline for the secondary one. */
+.sl-link-button {
+	border-radius: 0.5rem;
+	padding: 0.65rem 1.25rem;
+	font-weight: 500;
+}
+
 .sl-link-button.primary {
-	color: #03130c;
-	font-weight: 600;
+	color: #ffffff;
+	background-color: #1f9a65;
+	border-color: #1f9a65;
 }
 
 .sl-link-button.primary:hover {
-	background-color: var(--sl-color-accent-high);
-	border-color: var(--sl-color-accent-high);
+	background-color: #187a52;
+	border-color: #187a52;
+	color: #ffffff;
+}
+
+.sl-link-button.secondary {
+	color: var(--sl-color-white);
+	background-color: transparent;
+	border-color: var(--sl-color-gray-5);
+}
+
+.sl-link-button.secondary:hover {
+	background-color: var(--sl-color-gray-5);
+	border-color: var(--sl-color-gray-5);
+}
+
+:root[data-theme='light'] .sl-link-button.secondary:hover {
+	background-color: var(--sl-color-gray-6);
 }
 
 /* The first visit follows the site: dark. (The picker still lets people switch.) */

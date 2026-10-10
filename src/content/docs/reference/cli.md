@@ -86,7 +86,7 @@ The name can use letters, digits, `-` and `_`, and it must not clash with a Pyth
 | `--project <slug>` | Use an existing project without asking. |
 | `--name <name>` | Create a project with this name without asking. |
 | `--size <size>` | Server size for a new project, for example `nano`. |
-| `--hosted` | New project: we run it for you (Company and Enterprise plans). |
+| `--hosted` | New project: we run it for you (Fully managed plan). |
 | `--own-cloud` | New project: it runs in your own AWS account. |
 | `-y`, `--yes` | Don't ask for confirmation. |
 

@@ -20,7 +20,7 @@ Prices are on the [Pricing](../../reference/pricing/) page.
 
 ## Changing size or instance count
 
-Open your deployment, go to **Settings**, and choose a size and a number of instances between **1 and 20**. The change is recorded straight away and then applied to the running service in the background, so you don't need to deploy again. On a hosted plan the new size is billed first. If applying it fails, the deployment keeps its current size and the reason is shown.
+Open your deployment, go to **Settings**, and choose a size and a number of instances between **1 and 20**. The change is recorded straight away and then applied to the running service in the background, so you don't need to deploy again. On Fully managed the new size is billed first. If applying it fails, the deployment keeps its current size and the reason is shown.
 
 ### From the command line
 
@@ -64,7 +64,7 @@ djangocloud alerts                 # show the settings
 * You get one email when it starts, a reminder at most every 6 hours while it lasts, and the alert resets once usage is back under the limits.
 * With `--downtime` you are also emailed when the server stops answering.
 
-On Starter, AWS bills you for the servers directly in your own AWS account. DjangoCloud does not charge for them.
+On Self-hosted, AWS bills you for the servers directly in your own AWS account. DjangoCloud does not charge for them.
 
 ## Choosing a size
 

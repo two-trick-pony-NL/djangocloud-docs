@@ -42,7 +42,7 @@ The platform requests your health check path and waits for a successful response
 
 ## "This size hasn't been paid for yet"
 
-Only relevant to hosted plans. Complete the payment for the new size, then deploy.
+Only relevant to the Fully managed plan. Complete the payment for the new size, then deploy.
 
 ## Rollback refused
 

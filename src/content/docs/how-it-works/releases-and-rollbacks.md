@@ -45,4 +45,4 @@ Before relying on rollbacks, make your migrations backwards compatible: add colu
 
 ## How many releases are kept
 
-The newest 3 releases keep their image and uploaded source (Enterprise keeps 10), so you can roll back to them. Older ones are deleted automatically after a new release goes live, and can no longer be rolled back to. The live release is never deleted, and nothing is deleted while a build or deploy is running.
+The newest 3 releases keep their image and uploaded source, so you can roll back to them. Older ones are deleted automatically after a new release goes live, and can no longer be rolled back to. The live release is never deleted, and nothing is deleted while a build or deploy is running.

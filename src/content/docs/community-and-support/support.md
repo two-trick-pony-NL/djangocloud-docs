@@ -28,4 +28,4 @@ Never paste access keys, tokens or the contents of your environment variables.
 
 ## Paid support
 
-Company includes technical support, and Enterprise includes priority support. Both plans are coming soon.
+The Fully managed plan includes priority support.

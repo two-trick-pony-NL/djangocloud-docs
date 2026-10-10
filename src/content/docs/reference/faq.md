@@ -1,11 +1,11 @@
 ---
 title: "FAQ"
-description: "Yes, on Starter. Your app runs in your account and AWS bills you directly. Hosted plans, where we run it for you, are coming soon."
+description: "On Self-hosted, yes: your app runs in your account and AWS bills you directly. On Fully managed, no: we run it for you."
 ---
 
 ## Do I need an AWS account?
 
-Yes, on Starter. Your app runs in your account and AWS bills you directly. Hosted plans, where we run it for you, are coming soon.
+On **Self-hosted**, yes. Your app runs in your AWS account and AWS bills you directly. On **Fully managed**, no: we run it for you in a dedicated AWS account that we set up and look after.
 
 ## Can I use SQLite?
 

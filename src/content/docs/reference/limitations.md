@@ -30,12 +30,11 @@ A rollback does not reverse database migrations. DjangoCloud blocks a rollback t
 
 ## What we keep, and for how long
 
-|                                                                  | Your own AWS account | Company | Enterprise |
-| ---------------------------------------------------------------- | -------------------- | ------- | ---------- |
-| Releases you can roll back to (their images and uploaded source) | 3                    | 3       | 10         |
-| Logs                                                             | 3 days               | 7 days  | 30 days    |
+* **Releases you can roll back to** (their images and uploaded source): the newest 3.
+* **Logs:** 30 days.
+* **CPU and memory graphs:** 30 days.
 
-CPU and memory graphs keep 30 days. Older images and uploads are deleted automatically after a new release goes live, and a release whose image was deleted can't be rolled back to. The live release is never deleted.
+ Older images and uploads are deleted automatically after a new release goes live, and a release whose image was deleted can't be rolled back to. The live release is never deleted.
 
 When you **delete a deployment**, its server and images are deleted from AWS too. A database is deleted after we save a final snapshot of it in your AWS account, so you can still restore it.
 
@@ -52,9 +51,9 @@ You can deploy to the [regions listed here](../regions/), where Lightsail contai
 
 Logs and metrics are collected every few minutes, so the newest lines can be a little behind.
 
-## Starter plan: you run your own cloud
+## Self-hosted: you run your own cloud
 
-On Starter, your app runs in your AWS account. You pay AWS directly, you set up your own domain and certificate, and AWS limits and quotas on your account apply. Hosted Company and Enterprise plans are coming soon.
+On Self-hosted, your app runs in your AWS account. You pay AWS directly, and AWS limits and quotas on your account apply. On Fully managed we run it in a dedicated AWS account for you, so there is no AWS account to look after.
 
 ## Early access
 

@@ -37,7 +37,7 @@ djangocloud logs --since 2h            # 90s, 30m, 2h or 7d
 
 ### How long logs are kept
 
-Your app's log is collected every couple of minutes, so the newest lines can be a little behind. Lines are kept for **3 days** on your own AWS account (Starter), **7 days** on Company and **30 days** on Enterprise, and at most 20,000 lines per deployment, so one very noisy app can't fill the database. See [Known limitations](../../reference/limitations/).
+Your app's log is collected every couple of minutes, so the newest lines can be a little behind. Lines are kept for **30 days**, and at most 20,000 lines per deployment, so one very noisy app can't fill the database. See [Known limitations](../../reference/limitations/).
 
 ## Metrics
 
