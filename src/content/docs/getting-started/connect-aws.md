@@ -16,7 +16,7 @@ No AWS knowledge needed. In **Settings → AWS account**:
 1. Click **Set up the role in AWS** and pick your region.
 2. Click **Open AWS**. The AWS console opens with everything filled in. Sign in to the AWS account you want to deploy into if asked.
 3. At the bottom of the AWS page tick **I acknowledge that AWS CloudFormation might create IAM resources with custom names** and click **Submit**.
-4. Keep the DjangoCloud page open. When AWS finishes creating the role (about a minute), DjangoCloud checks it in the background and connects automatically. You don't copy anything back.
+4. That's it. When AWS finishes creating the role (about a minute), AWS notifies DjangoCloud, which checks the role in the background and connects automatically. You don't copy anything back, and you don't need to keep the page open: it updates when it's done, and **Settings → AWS account** shows the result if you come back later.
 
 The stack creates a role named `djangocloud-deployer` with the trust policy and the permissions below. When it finishes it tells DjangoCloud the role's ARN together with your ExternalId, and DjangoCloud connects only if it can actually assume the role with that ExternalId. To remove DjangoCloud's access later, delete the stack.
 
