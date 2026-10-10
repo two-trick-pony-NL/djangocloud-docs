@@ -13,9 +13,9 @@ DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour 
 
 In **Settings → AWS account**:
 
-1. Click **Copy** next to the template URL.
-2. Open the AWS console, go to **CloudFormation → Create stack**, and make sure you are signed in to the AWS account you want to deploy into.
-3. Under **Specify template** choose **Amazon S3 URL**, paste the URL, and click **Next**. (If the page shows no URL, use **Download djangocloud-role.json** and choose **Upload a template file** instead.)
+1. Click **Set up the role in AWS** and pick your region.
+2. Click **Copy template URL and open AWS**. The URL is copied and AWS CloudFormation opens in that region. Sign in to the AWS account you want to deploy into.
+3. Under **Specify template** choose **Amazon S3 URL**, paste the URL, and click **Next**. (If the dialog shows **Download djangocloud-role.json** instead, choose **Upload a template file** and pick that file.)
 4. Name the stack `djangocloud`, paste your **ExternalId** (also copyable on the page) into the ExternalId box, and click **Next** twice.
 5. Tick **I acknowledge that AWS CloudFormation might create IAM resources with custom names** and click **Submit**.
 6. Wait about a minute until the status says `CREATE_COMPLETE`, open the **Outputs** tab and copy the `RoleArn` value.
