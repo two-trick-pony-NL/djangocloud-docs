@@ -71,6 +71,16 @@ This policy lets DjangoCloud run your app on Lightsail and set up a small build 
        },
        {
          "Effect": "Allow",
+         "Action": "iam:CreateServiceLinkedRole",
+         "Resource": "arn:aws:iam::*:role/aws-service-role/servicequotas.amazonaws.com/*",
+         "Condition": {
+           "StringEquals": {
+             "iam:AWSServiceName": "servicequotas.amazonaws.com"
+           }
+         }
+       },
+       {
+         "Effect": "Allow",
          "Action": "codebuild:*",
          "Resource": "arn:aws:codebuild:*:*:project/djangocloud-build*"
        },
