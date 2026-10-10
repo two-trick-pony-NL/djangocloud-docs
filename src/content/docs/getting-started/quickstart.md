@@ -5,6 +5,8 @@ description: "From an existing Django project to a live URL in five steps."
 
 From an existing Django project to a live URL in five steps.
 
+<div style="aspect-ratio:16/9;max-width:100%;margin:1.5rem 0"><iframe src="https://www.youtube.com/embed/R51096ZB1sk" title="Deploy a brand-new Django project to AWS with Django Cloud" loading="lazy" style="width:100%;height:100%;border:0;border-radius:8px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
 1. **Create your account** at [djangocloud.dev](https://djangocloud.dev) and add a card. Choose a plan: **Self-hosted** is $0.99 a month and covers the tooling, and AWS bills you separately for the servers you run in your own account. **Fully managed** starts at $10 a month and we run the app for you, so there is no AWS account to connect.
 2. **[Connect your AWS account](../connect-aws/)** (Self-hosted only). Create a limited IAM role that trusts DjangoCloud (one CloudFormation stack) and paste its ARN into the dashboard. An IAM access key also works. On Fully managed, skip this step.
 3. **Install the CLI** ([`djangocloud-cli` on PyPI](https://pypi.org/project/djangocloud-cli/)) in your project's environment:

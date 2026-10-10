@@ -5,6 +5,8 @@ description: "DjangoCloud runs your app in your AWS account, on Amazon Lightsail
 
 DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices. To do that it needs access to your account. The recommended way is an **IAM role** that trusts DjangoCloud: nothing secret is stored, and you revoke access by deleting the role. An IAM access key is available as a fallback.
 
+<div style="aspect-ratio:16/9;max-width:100%;margin:1.5rem 0"><iframe src="https://www.youtube.com/embed/OB9ktTUv66s" title="Connect your AWS account to Django Cloud" loading="lazy" style="width:100%;height:100%;border:0;border-radius:8px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
 ## Option 1: an IAM role (recommended)
 
 Wondering whether this is safe? Read [Is my AWS account safe?](../../reference/is-my-aws-account-safe/), or the [security model](../../reference/aws-access-security/) for the technical details.

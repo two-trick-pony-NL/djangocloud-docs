@@ -5,6 +5,8 @@ description: "The CLI is a normal Python package, djangocloud-cli on PyPI:"
 
 The CLI is a normal Python package, [`djangocloud-cli` on PyPI](https://pypi.org/project/djangocloud-cli/):
 
+<div style="aspect-ratio:16/9;max-width:100%;margin:1.5rem 0"><iframe src="https://www.youtube.com/embed/GPaCFVB2Sx0" title="Deploy an existing Django project with Django Cloud" loading="lazy" style="width:100%;height:100%;border:0;border-radius:8px" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+
 ```bash
 pip install djangocloud-cli
 djangocloud login
