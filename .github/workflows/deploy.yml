@@ -30,6 +30,9 @@ jobs:
         env:
           DOCS_SITE: ${{ vars.DOCS_SITE }}
           DOCS_BASE: ${{ vars.DOCS_BASE }}
+          CLARITY_PROJECT_ID: ${{ vars.CLARITY_PROJECT_ID }}
+          MIXPANEL_TOKEN: ${{ vars.MIXPANEL_TOKEN }}
+          MIXPANEL_API_HOST: ${{ vars.MIXPANEL_API_HOST }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
