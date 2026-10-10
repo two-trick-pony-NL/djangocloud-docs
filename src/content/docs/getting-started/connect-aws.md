@@ -19,7 +19,7 @@ DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour 
 ### By hand
 
 1. In the AWS console open **IAM → Roles → Create role → Custom trust policy**.
-2. Paste the trust policy shown in **Settings → AWS account**. It looks like this, with DjangoCloud's principal and your ExternalId filled in:
+2. Copy the trust policy from **Settings → AWS account** and paste it as the custom trust policy. Don't type it from this page: the dashboard fills in both values below for you. Its shape is:
 
    ```json
    {
@@ -34,6 +34,9 @@ DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour 
      ]
    }
    ```
+
+   - `Principal` is the DjangoCloud identity that is allowed to assume your role. It is the same for every customer.
+   - `sts:ExternalId` is yours alone. Without it, nobody (including another DjangoCloud customer) can use your role.
 
 3. Attach the permissions policy below, name the role (for example `djangocloud-deployer`), and copy its ARN.
 4. Paste the ARN in **Settings → AWS account** and click **Verify and connect**.
