@@ -16,7 +16,7 @@ No AWS knowledge needed. In **Settings → AWS account**:
 1. Click **Set up the role in AWS** and pick your region.
 2. Click **Open AWS**. The AWS console opens with everything filled in. Sign in to the AWS account you want to deploy into if asked.
 3. At the bottom of the AWS page tick **I acknowledge that AWS CloudFormation might create IAM resources with custom names** and click **Submit**.
-4. Keep the DjangoCloud page open. When AWS finishes creating the role (about a minute), DjangoCloud connects automatically. You don't copy anything back.
+4. Keep the DjangoCloud page open. When AWS finishes creating the role (about a minute), DjangoCloud checks it in the background and connects automatically. You don't copy anything back.
 
 The stack creates a role named `djangocloud-deployer` with the trust policy and the permissions below. When it finishes it tells DjangoCloud the role's ARN together with your ExternalId, and DjangoCloud connects only if it can actually assume the role with that ExternalId. To remove DjangoCloud's access later, delete the stack.
 
@@ -27,10 +27,10 @@ If the page doesn't connect, open the stack's **Outputs** tab in AWS, copy `Role
 1. In the AWS console open **IAM → Roles → Create role → Custom trust policy**.
 2. Copy the trust policy from **Settings → AWS account**. It is already filled in with your own ExternalId, so paste it as is. It allows exactly one identity, `arn:aws:iam::710023142180:user/server`, to assume the role, and only when the request carries your ExternalId (`sts:ExternalId`). Without your ExternalId nobody, including another DjangoCloud customer, can use your role.
 
-3. Attach the permissions policy below, name the role (for example `djangocloud-deployer`), and copy its ARN.
+3. Attach the permissions policy below and name the role exactly `djangocloud-deployer`. DjangoCloud can only assume a role with that name. Copy its ARN.
 4. Paste the ARN in **Settings → AWS account** and click **Verify and connect**.
 
-DjangoCloud assumes the role and calls AWS before saving, and tells you what to fix if the trust policy or permissions are wrong.
+DjangoCloud assumes the role and calls AWS before saving, and tells you on the same page what to fix if the trust policy or permissions are wrong. The check runs in the background and usually takes a few seconds.
 
 ### Permissions policy
 
