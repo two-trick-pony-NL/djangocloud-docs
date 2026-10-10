@@ -7,6 +7,8 @@ DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. You pay 
 
 ## Option 1: an IAM role (recommended)
 
+Wondering whether this is safe? Read [Is my AWS account safe?](../../reference/is-my-aws-account-safe/), or the [security model](../../reference/aws-access-security/) for the technical details.
+
 DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour at a time). The role's trust policy only lets DjangoCloud in when the request carries **your own ExternalId**, which is shown in **Settings → AWS account** and by `GET /api/v1/aws`. The ExternalId is not a secret, but it is unique to you; it stops anyone else from making DjangoCloud act in your account.
 
 ### With CloudFormation (easiest)

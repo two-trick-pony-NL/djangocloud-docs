@@ -147,6 +147,14 @@
         "slug": "reference/security"
       },
       {
+        "label": "Is my AWS account safe?",
+        "slug": "reference/is-my-aws-account-safe"
+      },
+      {
+        "label": "AWS access: the security model",
+        "slug": "reference/aws-access-security"
+      },
+      {
         "label": "FAQ",
         "slug": "reference/faq"
       }
