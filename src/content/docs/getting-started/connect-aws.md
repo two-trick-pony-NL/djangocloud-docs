@@ -11,17 +11,16 @@ DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour 
 
 ### With CloudFormation (easiest)
 
-In **Settings → AWS account**:
+No AWS knowledge needed. In **Settings → AWS account**:
 
 1. Click **Set up the role in AWS** and pick your region.
-2. Click **Copy template URL and open AWS**. The URL is copied and AWS CloudFormation opens in that region. Sign in to the AWS account you want to deploy into.
-3. Under **Specify template** choose **Amazon S3 URL**, paste the URL, and click **Next**. (If the dialog shows **Download djangocloud-role.json** instead, choose **Upload a template file** and pick that file.)
-4. Name the stack `djangocloud`, paste your **ExternalId** (also copyable on the page) into the ExternalId box, and click **Next** twice.
-5. Tick **I acknowledge that AWS CloudFormation might create IAM resources with custom names** and click **Submit**.
-6. Wait about a minute until the status says `CREATE_COMPLETE`, open the **Outputs** tab and copy the `RoleArn` value.
-7. Back in DjangoCloud, choose a [region](../../reference/regions/), paste the role ARN and click **Verify and connect**.
+2. Click **Open AWS**. The AWS console opens with everything filled in. Sign in to the AWS account you want to deploy into if asked.
+3. At the bottom of the AWS page tick **I acknowledge that AWS CloudFormation might create IAM resources with custom names** and click **Submit**.
+4. Keep the DjangoCloud page open. When AWS finishes creating the role (about a minute), DjangoCloud connects automatically. You don't copy anything back.
 
-The stack creates a role named `djangocloud-deployer` with the trust policy and the permissions below. To remove DjangoCloud's access later, delete the stack.
+The stack creates a role named `djangocloud-deployer` with the trust policy and the permissions below. When it finishes it tells DjangoCloud the role's ARN together with your ExternalId, and DjangoCloud connects only if it can actually assume the role with that ExternalId. To remove DjangoCloud's access later, delete the stack.
+
+If the page doesn't connect, open the stack's **Outputs** tab in AWS, copy `RoleArn` and paste it into **Role ARN** on the same page. The dialog also offers **download the template** if you prefer to upload it to CloudFormation yourself.
 
 ### By hand
 
