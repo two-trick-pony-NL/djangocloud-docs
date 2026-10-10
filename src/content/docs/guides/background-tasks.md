@@ -6,7 +6,7 @@ description: "Your deployment runs a web process: uvicorn (or gunicorn) serving 
 Your deployment runs a web process: uvicorn (or gunicorn) serving your Django app. Anything that runs *inside* that process, such as a thread or a scheduler started at import time, stops when the container restarts and runs once per instance.
 
 :::caution
-DjangoCloud deploys one web service per project. Running a separate Celery worker or scheduler as part of the same project isn't something it sets up for you today.
+Celery workers and cron jobs are **coming soon**. DjangoCloud deploys one web service per project, so running a separate worker or scheduler as part of the same project isn't something it sets up for you today. If your app depends on them, use the options below for now.
 :::
 
 ## What works today

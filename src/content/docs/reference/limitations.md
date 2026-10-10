@@ -13,6 +13,11 @@ Files written to disk are lost on every restart and deploy. Use a managed databa
 
 Your app is started with **uvicorn** when it has an ASGI app (`asgi_module`), and with gunicorn when it only has a WSGI app. Both use the `workers` from your [build settings](../../how-it-works/build-settings/). Websockets work with uvicorn. Each deployment is a single small container, so the number of concurrent connections is limited by its size, and a restart or deploy closes open connections. You can replace the command with `start_command`, but that is your own responsibility to test.
 
+## Always on, and no background workers yet
+
+* Your app runs around the clock and is billed that way. There is no scale-to-zero, which also means no cold starts.
+* Each deployment runs **one web process**. Background workers (Celery) and scheduled jobs (cron) are **coming soon** and are not available yet. See [Background tasks and scheduled jobs](../../guides/background-tasks/) for what works today.
+
 ## Build and source limits
 
 * The source upload is limited to **100 MB**.
