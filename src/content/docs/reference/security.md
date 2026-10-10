@@ -3,11 +3,11 @@ title: "Security"
 description: "Values are encrypted at rest and can't be read back from the dashboard. They are decrypted only when a release is handed to AWS."
 ---
 
-## Your AWS access key
+## Your AWS access
 
-* It belongs to a dedicated IAM user that you create, limited by the policy in [Connect your AWS account](../../getting-started/connect-aws/).
-* The secret is encrypted at rest, never shown again after you save it, and used only to create and update your deployments.
-* Revoke it in IAM, or disconnect your account in the dashboard, at any time.
+* **IAM role (recommended):** you create a role that trusts DjangoCloud only with your own ExternalId, limited by the policy in [Connect your AWS account](../../getting-started/connect-aws/). DjangoCloud assumes it for one-hour sessions and stores no secret. Delete the role to revoke access at once.
+* **Access key (fallback):** a dedicated IAM user's key. The secret is encrypted at rest, never shown again after you save it, and used only to create and update your deployments. Revoke it in IAM at any time.
+* Either way you can also disconnect your account in the dashboard.
 
 ## Your environment variables
 

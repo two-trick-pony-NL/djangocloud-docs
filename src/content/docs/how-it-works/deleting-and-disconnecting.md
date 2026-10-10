@@ -19,9 +19,9 @@ Removal runs in the background. If your AWS account is disconnected or its envir
 
 ## Disconnect your AWS account
 
-Under **Settings → AWS account** in the dashboard you can disconnect your account. DjangoCloud forgets your access key. **Existing deployments keep running on AWS**, but you can no longer deploy new releases until you connect again.
+Under **Settings → AWS account** in the dashboard you can disconnect your account. DjangoCloud forgets your role (or access key). **Existing deployments keep running on AWS**, but you can no longer deploy new releases until you connect again.
 
-To fully revoke access, also delete or deactivate the access key for the IAM user in the AWS console.
+To fully revoke access, also delete the IAM role (or deactivate the access key) in the AWS console.
 
 ## Revoke CLI tokens
 

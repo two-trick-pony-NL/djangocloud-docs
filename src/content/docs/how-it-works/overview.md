@@ -18,7 +18,7 @@ If any step fails, the release is marked **failed** and the previous release kee
 
 * **Your app, and its servers,** run in your AWS account, in the region you chose.
 * **DjangoCloud** handles builds, release history, the dashboard and billing.
-* Your AWS access key is encrypted at rest and used only to create and update your deployments.
+* DjangoCloud reaches your account through an IAM role it assumes for short sessions (no stored secret), or an access key that is encrypted at rest. Either is used only to create and update your deployments.
 
 ## What you can follow
 

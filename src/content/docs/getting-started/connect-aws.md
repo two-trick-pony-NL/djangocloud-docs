@@ -3,18 +3,48 @@ title: "Connect your AWS account"
 description: "DjangoCloud runs your app in your AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices."
 ---
 
-DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices. To do that it needs an IAM access key.
+DjangoCloud runs your app in **your** AWS account, on Amazon Lightsail. You pay AWS directly for the servers, at AWS list prices. To do that it needs access to your account. The recommended way is an **IAM role** that trusts DjangoCloud: nothing secret is stored, and you revoke access by deleting the role. An IAM access key is available as a fallback.
 
-:::caution
-Create a dedicated IAM user for this. Never use your root account keys.
-:::
+## Option 1: an IAM role (recommended)
 
-## Steps
+DjangoCloud assumes the role with `sts:AssumeRole` for short sessions (one hour at a time). The role's trust policy only lets DjangoCloud in when the request carries **your own ExternalId**, which is shown in **Settings → AWS account** and by `GET /api/v1/aws`. The ExternalId is not a secret, but it is unique to you; it stops anyone else from making DjangoCloud act in your account.
 
-1. In the AWS console open **IAM → Users → Create user**, for example `djangocloud`.
-2. Attach this policy to the user. It lets DjangoCloud run your app on Lightsail and set up a small build environment in your account (a build project, a private bucket for build inputs, a role and logs). It has no access to any other service:
+### With CloudFormation (easiest)
+
+1. In **Settings → AWS account**, copy the CloudFormation template.
+2. In the AWS console open **CloudFormation → Create stack → With new resources**, upload the template as a file and create the stack. It creates a role named `djangocloud-deployer` with the trust policy and the permissions below.
+3. Open the stack's **Outputs** tab and copy `RoleArn`.
+4. Back in DjangoCloud, choose a [region](../../reference/regions/), paste the role ARN and click **Verify and connect**.
+
+### By hand
+
+1. In the AWS console open **IAM → Roles → Create role → Custom trust policy**.
+2. Paste the trust policy shown in **Settings → AWS account**. It looks like this, with DjangoCloud's principal and your ExternalId filled in:
 
    ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": { "AWS": "<DjangoCloud's principal, shown in the dashboard>" },
+         "Action": "sts:AssumeRole",
+         "Condition": { "StringEquals": { "sts:ExternalId": "<your ExternalId>" } }
+       }
+     ]
+   }
+   ```
+
+3. Attach the permissions policy below, name the role (for example `djangocloud-deployer`), and copy its ARN.
+4. Paste the ARN in **Settings → AWS account** and click **Verify and connect**.
+
+DjangoCloud assumes the role and calls AWS before saving, and tells you what to fix if the trust policy or permissions are wrong.
+
+### Permissions policy
+
+This policy lets DjangoCloud run your app on Lightsail and set up a small build environment in your account (a build project, a private bucket for build inputs, a role and logs). It has no access to any other service:
+
+```json
    {
      "Version": "2012-10-17",
      "Statement": [
@@ -103,10 +133,18 @@ Create a dedicated IAM user for this. Never use your root account keys.
    }
    ```
 
-3. Under **Security credentials**, create an access key.
-4. In the DjangoCloud dashboard open **Settings → AWS account**, choose a [region](../../reference/regions/), and paste the access key ID and secret access key.
+## Option 2: an IAM access key (fallback)
 
-DjangoCloud checks the keys with AWS before saving them.
+:::caution
+Create a dedicated IAM user for this. Never use your root account keys.
+:::
+
+1. In the AWS console open **IAM → Users → Create user**, for example `djangocloud`.
+2. Attach the permissions policy above to the user.
+3. Under **Security credentials**, create an access key.
+4. In **Settings → AWS account** open **Or use an access key instead**, choose a [region](../../reference/regions/), and paste the access key ID and secret access key.
+
+DjangoCloud checks the keys with AWS before saving them. You can switch an existing key connection to a role at any time from the same page; the stored key is then deleted.
 
 ## What this costs you
 
@@ -116,12 +154,11 @@ Your app's servers are billed by AWS at Lightsail list prices. Builds run in AWS
 If your AWS account is brand new, AWS may need some hours to enable builds for it the first time. DjangoCloud asks for it automatically and shows "Waiting for AWS to enable builds" on your deployment page, then continues on its own.
 :::
 
-## How the keys are handled
+## How access is handled
 
-* The secret is encrypted at rest and only used to deploy your projects.
-* It is never shown again after you save it.
-* You can revoke the key in IAM at any time, or **disconnect** your account in the dashboard.
-* Disconnecting does not stop anything. Existing deployments keep running on AWS.
+* **Role:** no secret is stored. DjangoCloud keeps the role ARN and your ExternalId, and assumes the role for short sessions. Delete the role (or the CloudFormation stack) in AWS to revoke access immediately.
+* **Access key:** the secret is encrypted at rest, only used to deploy your projects, and never shown again after you save it. Revoke the key in IAM at any time.
+* You can also **disconnect** your account in the dashboard. Disconnecting does not stop anything: existing deployments keep running on AWS.
 
 ## Choosing a region
 
